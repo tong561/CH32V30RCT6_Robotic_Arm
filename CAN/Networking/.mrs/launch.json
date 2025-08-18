@@ -5,7 +5,7 @@
 			"type": "mrs-debugger",
 			"request": "launch",
 			"name": "Networking",
-			"cwd": "e:\\desktop\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking",
+			"cwd": "e:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking",
 			"openOCDCfg": {
 				"useLocalOpenOCD": true,
 				"executable": "e:/ch32_ide/MounRiver_Studio2/resources/app/resources/win32/components/WCH/OpenOCD/OpenOCD/bin/openocd.exe",
@@ -39,8 +39,8 @@
 					"additionalCommands": []
 				},
 				"loadedFiles": {
-					"executableFile": "e:\\desktop\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\obj\\Networking.elf",
-					"symbolFile": "e:\\desktop\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\obj\\Networking.elf",
+					"executableFile": "e:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\obj\\Networking.elf",
+					"symbolFile": "e:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\obj\\Networking.elf",
 					"executableFileOffset": 0,
 					"symbolFileOffset": 0
 				},

@@ -55,7 +55,7 @@ main-build: Networking.elf secondary-outputs
 
 # Tool invocations
 Networking.elf: $(OBJS) $(USER_OBJS)
-	@	riscv-none-embed-gcc -march=rv32imacxw -mabi=ilp32 -msmall-data-limit=8 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -Wunused -Wuninitialized -g -T "e:/desktop/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/SRC/Ld/Link.ld" -nostartfiles -Xlinker --gc-sections -Xlinker --print-memory-usage -Wl,-Map,"Networking.map" --specs=nano.specs --specs=nosys.specs -o "Networking.elf" $(OBJS)  $(LIBS) -lprintfloat
+	@	riscv-none-embed-gcc -march=rv32imafcxw -mabi=ilp32f -msmall-data-limit=8 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -fsingle-precision-constant -Wunused -Wuninitialized -g -T "e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/SRC/Ld/Link.ld" -nostartfiles -Xlinker --gc-sections -Xlinker --print-memory-usage -Wl,-Map,"Networking.map" --specs=nano.specs --specs=nosys.specs -o "Networking.elf" $(OBJS)  $(LIBS) -lprintfloat
 Networking.hex: Networking.elf
 	@	riscv-none-embed-objcopy -O ihex "Networking.elf" "Networking.hex"
 Networking.lst: Networking.elf
