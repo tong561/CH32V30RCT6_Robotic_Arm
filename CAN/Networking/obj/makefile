@@ -13,6 +13,7 @@ RM := rm -rf
 -include Peripheral/src/subdir.mk
 -include Debug/subdir.mk
 -include Core/subdir.mk
+-include Architecture/bsp/uart/subdir.mk
 -include Architecture/bsp/gpio/subdir.mk
 -include Architecture/bsp/can/subdir.mk
 -include subdir.mk

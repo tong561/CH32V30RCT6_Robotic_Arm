@@ -4,7 +4,7 @@
 #include "can.h"
 #include "arm.h"
 #include "arm_instance.h"
-
+#include "uart_dma.h"
 float test_angle;
  /*********************************************************************
   * @fn      main
@@ -21,6 +21,8 @@ float test_angle;
 	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf( "ChipID:%08x\r\n", DBGMCU_GetCHIPID()) ;
 
+	USARTx_CFG(115200);
+	DMA_INIT();
 	CAN_Mode_Init( CAN_SJW_1tq, CAN_BS2_5tq, CAN_BS1_6tq, 16, CAN_Mode_Normal );/* Bps = 250Kbps */
 	
 	GPIO_SW_INIT();
@@ -43,6 +45,17 @@ float test_angle;
 
 	while(1)
 	{		
+        if (ring_buffer.RemainCount > 0)
+        {
+            printf("recv %d >>>\n", ring_buffer.RemainCount);
+            while (ring_buffer.RemainCount > 0)
+            {
+                printf("%c", ring_buffer_pop());
+            }
+            printf("\n<<<\n");
+        }
+
+
 		CAN_BLDC_POS_CONTROL(50*8.0f,2);
 		CAN_BLDC_POS_CONTROL(test_angle*8.0f,3);
 		Delay_Ms(100);

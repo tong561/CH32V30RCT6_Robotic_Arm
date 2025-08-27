@@ -27,6 +27,7 @@ CALLGRAPH_DOT := callgraph.dot \
 SUBDIRS := \
 Architecture/bsp/can \
 Architecture/bsp/gpio \
+Architecture/bsp/uart \
 Core \
 Debug \
 Peripheral/src \

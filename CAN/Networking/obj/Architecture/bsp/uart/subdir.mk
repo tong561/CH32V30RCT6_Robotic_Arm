@@ -5,21 +5,21 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Core/core_riscv.c 
+../Architecture/bsp/uart/uart_dma.c 
 
 C_DEPS += \
-./Core/core_riscv.d 
+./Architecture/bsp/uart/uart_dma.d 
 
 OBJS += \
-./Core/core_riscv.o 
+./Architecture/bsp/uart/uart_dma.o 
 
 
 EXPANDS += \
-./Core/core_riscv.c.234r.expand 
+./Architecture/bsp/uart/uart_dma.c.234r.expand 
 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Core/core_riscv.o: e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Core/core_riscv.c
+Architecture/bsp/uart/%.o: ../Architecture/bsp/uart/%.c
 	@	riscv-none-embed-gcc -march=rv32imafcxw -mabi=ilp32f -msmall-data-limit=8 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -fsingle-precision-constant -Wunused -Wuninitialized -g -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/SRC/Debug" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/SRC/Core" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/User" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/SRC/Peripheral/inc" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/module/arm" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/module/BLDC" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/module/distance_sensor" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/module/fast_sin" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/module/LCD" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/module/STEP" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/can" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/gpio" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/uart" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/application" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/bsp" -I"e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/CAN/Networking/Architecture/module" -std=gnu99 -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
 

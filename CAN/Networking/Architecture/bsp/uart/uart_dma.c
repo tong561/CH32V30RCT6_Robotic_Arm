@@ -1,36 +1,40 @@
-/********************************** (C) COPYRIGHT *******************************
- * File Name          : main.c
- * Author             : WCH
- * Version            : V1.0.0
- * Date               : 2021/06/06
- * Description        : Main program body.
-*********************************************************************************
-* Copyright (c) 2021 Nanjing Qinheng Microelectronics Co., Ltd.
-* Attention: This software (modified or not) and binary are used for 
-* microcontroller manufactured by Nanjing Qinheng Microelectronics.
-*******************************************************************************/
-
+#include "uart_dma.h"
+#include "string.h"
 /*
- *@Note
- This example demonstrates receiving indeterminate length data via USART's IDLE interrupt and DMA.
- USART1_Tx(PA9), USART1_Rx(PA10).
-
-
+这里是串口1配置为空闲中断方式接收的bsp文件
+此为使用示例
+    初始化
+        USARTx_CFG(115200);
+        DMA_INIT();
+    数据调用
+        if (ring_buffer.RemainCount > 0)
+        {
+            printf("recv %d >>>\n", ring_buffer.RemainCount);
+            while (ring_buffer.RemainCount > 0)
+            {
+                printf("%c", ring_buffer_pop());
+            }
+            printf("\n<<<\n");
+        }
 */
 
-#include "debug.h"
-#include "string.h"
+
+
 
 void USART1_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void DMA1_Channel5_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
 // ring buffer size
-#define RING_BUFFER_LEN     (1024u)
 
-// The length of a single buffer used by DMA
-#define RX_BUFFER_LEN       (128u)
+
+
 
 #define USART_RX_CH         DMA1_Channel5
+
+// 在文件顶部或全局变量区域添加
+uint8_t g_rx_data_buffer[RX_BUFFER_LEN];  // 全局接收数据数组
+volatile uint8_t g_rx_data_ready = 0;     // 数据就绪标志位
+volatile uint16_t g_rx_data_len = 0;      // 接收到的数据长度
 
 struct
 {
@@ -42,14 +46,11 @@ struct
     .Rx_Buffer      = {0},
 };
 
-struct
-{
-    uint8_t           buffer[RING_BUFFER_LEN];
-    volatile uint16_t RecvPos;  //
-    volatile uint16_t SendPos;  //
-    volatile uint16_t RemainCount;
+// 定义结构体类型
 
-} ring_buffer = {{0}, 0, 0, 0};
+
+// 定义全局变量
+RingBuffer ring_buffer = {{0}, 0, 0, 0};
 
 /*********************************************************************
  * @fn      USARTx_CFG
@@ -93,7 +94,6 @@ void USARTx_CFG(uint32_t baudrate)
 
     USART_Cmd(USART1, ENABLE);
 }
-
 
 /*********************************************************************
  * @fn      DMA_INIT
@@ -189,39 +189,6 @@ uint8_t ring_buffer_pop()
 }
 
 /*********************************************************************
- * @fn      main
- *
- * @brief   Main program.
- *
- * @return  none
- */
-int main(void)
-{
-    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-    Delay_Init();
-    USART_Printf_Init(115200);
-    USARTx_CFG(115200);
-    DMA_INIT();
-    printf("SystemClk:%d\r\n", SystemCoreClock);
-    printf( "ChipID:%08x\r\n", DBGMCU_GetCHIPID() );
-    printf("USART Idle Recv\r\n");
-
-    while (1)
-    {
-        if (ring_buffer.RemainCount > 0)
-        {
-            printf("recv %d >>>\n", ring_buffer.RemainCount);
-            while (ring_buffer.RemainCount > 0)
-            {
-                printf("%c", ring_buffer_pop());
-            }
-            printf("\n<<<\n");
-        }
-        Delay_Ms(10);
-    }
-}
-
-/*********************************************************************
  * @fn      USART1_IRQHandler
  *
  * @brief   This function handles USART1 global interrupt request.
@@ -274,3 +241,35 @@ void DMA1_Channel5_IRQHandler(void)
 
     DMA_ClearITPendingBit(DMA1_IT_TC5);
 }
+
+/*********************************************************************  
+ * @fn      DMA1_Channel5_IRQHandler  
+ *  
+ * @brief   This function handles DMA1 Channel 5 global interrupt request.  
+ *  
+ * @return  none  
+ */ 
+// void DMA1_Channel5_IRQHandler(void) 
+// {
+//     uint16_t rxlen     = RX_BUFFER_LEN;
+//     uint8_t  oldbuffer = USART_DMA_CTRL.DMA_USE_BUFFER;
+//     // FULL 
+    
+//     USART_DMA_CTRL.DMA_USE_BUFFER = !oldbuffer;
+    
+//     DMA_Cmd(USART_RX_CH, DISABLE);
+//     DMA_SetCurrDataCounter(USART_RX_CH, RX_BUFFER_LEN);
+//     // Switch buffer
+//     USART_RX_CH->MADDR = (uint32_t)(USART_DMA_CTRL.Rx_Buffer[USART_DMA_CTRL.DMA_USE_BUFFER]);
+//     DMA_Cmd(USART_RX_CH, ENABLE);
+    
+//     // 新增：将数据拷贝到全局数组并置位标志
+//     memcpy(g_rx_data_buffer, USART_DMA_CTRL.Rx_Buffer[oldbuffer], rxlen);
+//     g_rx_data_len = rxlen;
+//     g_rx_data_ready = 1;  // 置位数据就绪标志
+    
+//     // 如果仍需要环形缓冲区功能，保留这行；否则可以注释掉
+//     //ring_buffer_push_huge(USART_DMA_CTRL.Rx_Buffer[oldbuffer], rxlen);
+    
+//     DMA_ClearITPendingBit(DMA1_IT_TC5);
+// }
