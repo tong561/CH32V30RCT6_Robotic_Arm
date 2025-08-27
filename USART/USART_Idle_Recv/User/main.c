@@ -219,7 +219,7 @@ int main(void)
             }
             printf("\n<<<\n");
         }
-        Delay_Ms(1000);
+        Delay_Ms(10);
     }
 }
 
