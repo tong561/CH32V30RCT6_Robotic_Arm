@@ -52,6 +52,8 @@ float test_angle;
             {
                 printf("%c", ring_buffer_pop());
             }
+			UART_SendBytes(USART1,"hello!",6,1000);
+			Delay_Ms(500);
             printf("\n<<<\n");
         }
 

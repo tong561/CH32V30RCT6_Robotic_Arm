@@ -273,3 +273,52 @@ void DMA1_Channel5_IRQHandler(void)
     
 //     DMA_ClearITPendingBit(DMA1_IT_TC5);
 // }
+
+
+/*********************************************************************
+ * @fn      UART_SendBytes
+ * @brief   多字节发送函数（阻塞模式，带超时）
+ * @param   USARTx: UART外设指针 (USART1, USART2等)
+ * @param   pData: 要发送的数据指针
+ * @param   Size: 要发送的字节数
+ * @param   Timeout: 超时时间（毫秒，0表示无限等待）
+ * @return  发送状态
+ */
+UART_Status_t UART_SendBytes(USART_TypeDef *USARTx, uint8_t *pData, uint16_t Size, uint32_t Timeout)
+{
+    //uint32_t tickstart = 0;
+    uint16_t i = 0;
+    
+    // 参数检查
+    if (pData == NULL || Size == 0) {
+        return UART_ERROR;
+    }
+    
+    // 记录开始时间
+    // if (Timeout > 0) {
+    //     tickstart = UART_GetTick();
+    // }
+    
+    // 逐字节发送
+    for (i = 0; i < Size; i++) {
+        
+        // 等待发送数据寄存器空（TXE标志）
+        while (!(USARTx->STATR & USART_FLAG_TXE)) {
+            // 检查超时
+            if (Timeout > 0) {
+
+            }
+        }
+        
+        // 发送单个字节
+        USART_SendData(USARTx, pData[i]);
+    }
+    
+    // 等待最后一个字节发送完成（TC标志）
+    while (!(USARTx->STATR & USART_FLAG_TC)) {
+
+        }
+    
+    
+    return UART_OK;
+}

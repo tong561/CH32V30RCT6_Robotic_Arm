@@ -21,6 +21,12 @@ typedef struct
 } RingBuffer;
 
 extern RingBuffer ring_buffer;
+typedef enum {
+    UART_OK      = 0,
+    UART_ERROR   = 1,
+    UART_TIMEOUT = 2
+} UART_Status_t;
+UART_Status_t UART_SendBytes(USART_TypeDef *USARTx, uint8_t *pData, uint16_t Size, uint32_t Timeout);
 
 void USARTx_CFG(uint32_t baudrate);
 void DMA_INIT(void);
