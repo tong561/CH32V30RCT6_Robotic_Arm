@@ -1,5 +1,5 @@
 #ifndef __CAN_H
-#define __CAM_H
+#define __CAN_H
 
 #include "debug.h"
 #include "stdint.h"

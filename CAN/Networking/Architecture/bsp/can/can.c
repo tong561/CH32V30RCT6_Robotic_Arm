@@ -1,5 +1,20 @@
 #include "can.h"
 
+/*
+此为can的bsp文件，主要用于配置CAN的相关参数和初始化CAN模块。
+该芯片只有一路can外设，因此不做外设号的区分
+可供调用的函数如下
+    CAN_Mode_Init
+    CAN_Send_Msg
+    以下为接收相关函数
+    USB_LP_CAN1_RX0_IRQHandler
+    CAN_Receive_Msg
+提供一个示例代码如下
+    CAN_Mode_Init( CAN_SJW_1tq, CAN_BS2_5tq, CAN_BS1_6tq, 16, CAN_Mode_Normal );/* Bps = 250Kbps 
+    CAN_Send_Msg(tx_buffer,8,1,(u32)0x02<<5 | 0x0C);
+*/
+
+
 /* CAN Mode Definition */
  #define TX_MODE   0
  #define RX_MODE   1

@@ -28,7 +28,9 @@ User/main.o: ../User/main.c \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_wwdg.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/User/ch32v30x_it.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc.h \
- ../User/table.h ../User/can.h ../User/arm.h ../User/arm_instance.h
+ ../User/table.h \
+ E:\上海理疗机械臂金主\CH32V307EVT\ (1)\EVT\EXAM\CAN\Networking\Architecture\bsp\can/can.h \
+ ../User/arm.h ../User/arm_instance.h
 
 e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Debug/debug.h:
 
@@ -90,7 +92,7 @@ e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc
 
 ../User/table.h:
 
-../User/can.h:
+E:\上海理疗机械臂金主\CH32V307EVT\ (1)\EVT\EXAM\CAN\Networking\Architecture\bsp\can/can.h:
 
 ../User/arm.h:
 

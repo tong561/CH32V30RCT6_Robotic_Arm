@@ -1,4 +1,5 @@
-User/arm.o: ../User/arm.c ../User/arm.h \
+Architecture/bsp/can/can.o: ../Architecture/bsp/can/can.c \
+ ../Architecture/bsp/can/can.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Debug/debug.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Core/core_riscv.h \
@@ -27,10 +28,9 @@ User/arm.o: ../User/arm.c ../User/arm.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_usart.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_wwdg.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/User/ch32v30x_it.h \
- e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc.h \
- e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/module/fast_sin/fast_sin.h
+ e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc.h
 
-../User/arm.h:
+../Architecture/bsp/can/can.h:
 
 e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Debug/debug.h:
 
@@ -89,5 +89,3 @@ e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_wwdg
 e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/User/ch32v30x_it.h:
 
 e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc.h:
-
-e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/module/fast_sin/fast_sin.h:
