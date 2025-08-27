@@ -5,16 +5,20 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Architecture/bsp/uart/uart.c \
 ../Architecture/bsp/uart/uart_dma.c 
 
 C_DEPS += \
+./Architecture/bsp/uart/uart.d \
 ./Architecture/bsp/uart/uart_dma.d 
 
 OBJS += \
+./Architecture/bsp/uart/uart.o \
 ./Architecture/bsp/uart/uart_dma.o 
 
 
 EXPANDS += \
+./Architecture/bsp/uart/uart.c.234r.expand \
 ./Architecture/bsp/uart/uart_dma.c.234r.expand 
 
 

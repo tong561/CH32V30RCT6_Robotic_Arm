@@ -161,46 +161,52 @@ int main(void)
     printf("USART Interrupt TEST\r\n");
     USARTx_CFG(); /* USART2 & USART3 INIT */
 
-    while(TxCnt2 < TxSize2) /* USART3--->USART2 */
-    {
-        USART_SendData(USART3, TxBuffer2[TxCnt2++]);
-        while(USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET) /* waiting for sending finish */
-        {
-        }
-    }
-    while(TxCnt1 < TxSize1) /* USART2--->USART3 */
-    {
-        USART_SendData(USART2, TxBuffer1[TxCnt1++]);
-        while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET) /* waiting for sending finish */
-        {
-        }
-    }
+    // while(TxCnt2 < TxSize2) /* USART3--->USART2 */
+    // {
+    //     USART_SendData(USART3, TxBuffer2[TxCnt2++]);
+    //     while(USART_GetFlagStatus(USART3, USART_FLAG_TXE) == RESET) /* waiting for sending finish */
+    //     {
+    //     }
+    // }
+    // while(TxCnt1 < TxSize1) /* USART2--->USART3 */
+    // {
+    //     USART_SendData(USART2, TxBuffer1[TxCnt1++]);
+    //     while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET) /* waiting for sending finish */
+    //     {
+    //     }
+    // }
 
-    Delay_Ms(100);
+    // Delay_Ms(100);
 
-    while(!Rxfinish1 || !Rxfinish2) /* waiting for receiving int finish */
-    {
-    }
+    // while(!Rxfinish1 || !Rxfinish2) /* waiting for receiving int finish */
+    // {
+    // }
 
-    TransferStatus1 = Buffercmp(TxBuffer1, RxBuffer2, TxSize1);
-    TransferStatus2 = Buffercmp(TxBuffer2, RxBuffer1, TxSize2);
+    // TransferStatus1 = Buffercmp(TxBuffer1, RxBuffer2, TxSize1);
+    // TransferStatus2 = Buffercmp(TxBuffer2, RxBuffer1, TxSize2);
 
-    if(TransferStatus1 && TransferStatus2)
-    {
-        printf("\r\nSend Success!\r\n");
-    }
-    else
-    {
-        printf("\r\nSend Fail!\r\n");
-    }
-    printf("TxBuffer1---->RxBuffer2     TxBuffer2---->RxBuffer1\r\n");
-    printf("TxBuffer1:%s\r\n", TxBuffer1);
-    printf("RxBuffer1:%s\r\n", RxBuffer1);
-    printf("TxBuffer2:%s\r\n", TxBuffer2);
-    printf("RxBuffer2:%s\r\n", RxBuffer2);
+    // if(TransferStatus1 && TransferStatus2)
+    // {
+    //     printf("\r\nSend Success!\r\n");
+    // }
+    // else
+    // {
+    //     printf("\r\nSend Fail!\r\n");
+    // }
+    // printf("TxBuffer1---->RxBuffer2     TxBuffer2---->RxBuffer1\r\n");
+    // printf("TxBuffer1:%s\r\n", TxBuffer1);
+    // printf("RxBuffer1:%s\r\n", RxBuffer1);
+    // printf("TxBuffer2:%s\r\n", TxBuffer2);
+    // printf("RxBuffer2:%s\r\n", RxBuffer2);
 
     while(1)
     {
+        if(RxCnt2)
+        {
+            for(int i=0;i<RxCnt2;i++)
+                USART_SendData(USART3, RxBuffer2[i]);
+            RxCnt2 = 0;    
+        }
     }
 }
 
@@ -219,7 +225,7 @@ void USART2_IRQHandler(void)
 
         if(RxCnt1 == TxSize2)
         {
-            USART_ITConfig(USART2, USART_IT_RXNE, DISABLE);
+            //USART_ITConfig(USART2, USART_IT_RXNE, DISABLE);
             Rxfinish1 = 1;
         }
     }
@@ -238,9 +244,9 @@ void USART3_IRQHandler(void)
     {
         RxBuffer2[RxCnt2++] = USART_ReceiveData(USART3);
 
-        if(RxCnt2 == TxSize1)
+        if(RxCnt2 >5)
         {
-            USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);
+            //USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);
             Rxfinish2 = 1;
         }
     }
