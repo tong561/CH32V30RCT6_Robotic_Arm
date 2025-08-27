@@ -148,7 +148,10 @@
 							"${project}/Debug",
 							"${project}/Core",
 							"${project}/User",
-							"${project}/Peripheral/inc"
+							"${project}/Peripheral/inc",
+							"E:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\Architecture\\bsp\\can",
+							"E:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\Architecture\\bsp\\gpio",
+							"E:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\Architecture\\bsp\\uart"
 						],
 						"include_system_paths": [],
 						"include_files": []

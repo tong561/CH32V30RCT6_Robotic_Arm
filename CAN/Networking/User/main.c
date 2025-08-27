@@ -21,26 +21,28 @@ float test_angle;
 	printf("SystemClk:%d\r\n",SystemCoreClock);
 	printf( "ChipID:%08x\r\n", DBGMCU_GetCHIPID()) ;
 
-	//GPIO_SW_INIT();
-	//SW_Catch();
 	CAN_Mode_Init( CAN_SJW_1tq, CAN_BS2_5tq, CAN_BS1_6tq, 16, CAN_Mode_Normal );/* Bps = 250Kbps */
+	
+	GPIO_SW_INIT();
+	SW_Release();
+	// Delay_Ms(3000);
+	// SW_Catch();
+	//SW_Catch();
 	CAN_MOTOR_MODE_SET();
 	//robot_arm_5dof_method2(0,30,50);
 	//SW_Release();
 
-	test_angle = 10;
+	test_angle = 60;
 
 
 	// GPIO_WriteBit(GPIOA, GPIO_Pin_11, Bit_RESET);
 	// GPIO_WriteBit(GPIOA, GPIO_Pin_12, Bit_RESET);
 
-	//Delay_Ms(3000);
-	//SW_Catch();
+
 
 
 	while(1)
 	{		
-		
 		CAN_BLDC_POS_CONTROL(50*8.0f,2);
 		CAN_BLDC_POS_CONTROL(test_angle*8.0f,3);
 		Delay_Ms(100);
