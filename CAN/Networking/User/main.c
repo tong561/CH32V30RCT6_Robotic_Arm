@@ -32,17 +32,11 @@ float test_angle;
 	//setup²¿·Ö´úÂë
 	SW_Release();
 	CAN_MOTOR_MODE_SET();
-	test_angle = 10;
-	//CAN_BLDC_POS_CONTROL(50*8.0f,2);
-	//CAN_BLDC_POS_CONTROL(test_angle*8.0f,3);
-	Delay_Ms(100);
+
 
 	while(1)
 	{		
-		//CAN_MOTOR_MODE_SET();
-		CAN_BLDC_POS_CONTROL(0*8.0f,2);
-		CAN_BLDC_POS_CONTROL(0*8.0f,3);
-		Delay_Ms(100);
+		
 	}
  }
  

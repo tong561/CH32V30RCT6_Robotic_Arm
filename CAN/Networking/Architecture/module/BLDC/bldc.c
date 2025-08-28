@@ -1,5 +1,12 @@
 #include "bldc.h"
 #include "can.h"
+/*
+这里是BLDC8108-48电机的module文件，以下为示例
+    CAN_MOTOR_MODE_SET();
+    //此处开启刹车电源
+    CAN_BLDC_POS_CONTROL(0*8.0f,2);
+	CAN_BLDC_POS_CONTROL(0*8.0f,3);
+*/
 
 // 将浮点数转换为 4 字节 IEEE 754 单精度浮点数编码
 void float_to_bytes(float num, uint8_t *bytes) 
