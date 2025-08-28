@@ -15,6 +15,7 @@ RM := rm -rf
 -include Core/subdir.mk
 -include Architecture/module/table/subdir.mk
 -include Architecture/module/SW/subdir.mk
+-include Architecture/module/STEP/subdir.mk
 -include Architecture/module/BLDC/subdir.mk
 -include Architecture/bsp/uart/subdir.mk
 -include Architecture/bsp/gpio/subdir.mk

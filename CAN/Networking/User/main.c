@@ -6,7 +6,12 @@
 #include "uart.h"
 #include "sw.h"
 #include "bldc.h"
+#include "step.h"
+
 float test_angle;
+float step_angle = 45;
+float angle90_to_pulse = 50*50*32;//减速比*90度对应的脉冲*细分
+float step_pulse;
  /*********************************************************************
   * @fn      main
   *
@@ -31,9 +36,9 @@ float test_angle;
 
 	//setup部分代码
 	SW_Release();
-	CAN_MOTOR_MODE_SET();
-
-
+	//CAN_MOTOR_MODE_SET();
+	step_pulse = step_angle/90.0f*angle90_to_pulse;
+	CAN_Send_Position_Mode(0x600,1,1000,200,(u32)step_pulse,1,0);
 	while(1)
 	{		
 		

@@ -29,6 +29,7 @@ Architecture/bsp/can \
 Architecture/bsp/gpio \
 Architecture/bsp/uart \
 Architecture/module/BLDC \
+Architecture/module/STEP \
 Architecture/module/SW \
 Architecture/module/table \
 Core \
