@@ -1,4 +1,5 @@
-User/main.o: ../User/main.c \
+Architecture/module/BLDC/bldc.o: ../Architecture/module/BLDC/bldc.c \
+ ../Architecture/module/BLDC/bldc.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Debug/debug.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Core/core_riscv.h \
@@ -28,12 +29,9 @@ User/main.o: ../User/main.c \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_wwdg.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/User/ch32v30x_it.h \
  e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc.h \
- e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/can/can.h \
- ../User/arm.h \
- e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/uart/uart_dma.h \
- e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/uart/uart.h \
- e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/module/SW/sw.h \
- e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/module/BLDC/bldc.h
+ e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/can/can.h
+
+../Architecture/module/BLDC/bldc.h:
 
 e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Debug/debug.h:
 
@@ -94,13 +92,3 @@ e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/User/ch32v30x_it.
 e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc.h:
 
 e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/can/can.h:
-
-../User/arm.h:
-
-e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/uart/uart_dma.h:
-
-e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/bsp/uart/uart.h:
-
-e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/module/SW/sw.h:
-
-e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/CAN/Networking/Architecture/module/BLDC/bldc.h:

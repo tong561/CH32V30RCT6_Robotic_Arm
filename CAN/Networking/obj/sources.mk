@@ -28,6 +28,9 @@ SUBDIRS := \
 Architecture/bsp/can \
 Architecture/bsp/gpio \
 Architecture/bsp/uart \
+Architecture/module/BLDC \
+Architecture/module/SW \
+Architecture/module/table \
 Core \
 Debug \
 Peripheral/src \

@@ -161,7 +161,9 @@
 							"${project}/Architecture",
 							"${project}/Architecture/application",
 							"${project}/Architecture/bsp",
-							"${project}/Architecture/module"
+							"${project}/Architecture/module",
+							"${project}/Architecture/module/SW",
+							"${project}/Architecture/module/table"
 						],
 						"include_system_paths": [],
 						"include_files": []

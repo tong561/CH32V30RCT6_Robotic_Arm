@@ -1,4 +1,4 @@
-#include "arm_instance.h"
+#include "bldc.h"
 #include "can.h"
 
 // ½«¸¡µãÊý×ª»»Îª 4 ×Ö½Ú IEEE 754 µ¥¾«¶È¸¡µãÊý±àÂë
@@ -68,17 +68,3 @@ void CAN_BLDC_POS_CONTROL(float angle,u8 motor_id)//angleÊÇ½Ç¶È£¬idÊÇ1~5,ÕâÀïÓÐµ
     }
 }
 
-
-void SW_Release(void)
-{
-    GPIO_WriteBit(GPIOA, GPIO_Pin_11, Bit_SET);
-    Delay_Ms(10);
-    GPIO_WriteBit(GPIOA, GPIO_Pin_12, Bit_SET);
-    Delay_Ms(10);
-    GPIO_WriteBit(GPIOA, GPIO_Pin_11, Bit_RESET);
-}
-
-void SW_Catch(void)
-{
-    GPIO_WriteBit(GPIOA, GPIO_Pin_12, Bit_RESET);
-}
