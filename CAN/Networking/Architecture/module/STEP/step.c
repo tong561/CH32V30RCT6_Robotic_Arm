@@ -1,7 +1,26 @@
 #include "step.h"
 #include "can.h"
 
+/*
+这里是步进电机的module层代码，can在前面调用BLDC时候已经用过，此处只需要调用api即可控制电机
+    CAN_Send_Position_Mode(0x600,1,1000,200,(u32)step_pulse,1,0);
+    变量定义如下
+        float step_angle = 45;
+        float angle90_to_pulse = 50*50*32;//减速比*90度对应的脉冲*细分
+        float step_pulse;
+*/
 #define MAX_FRAME_LEN 8
+
+// 全局变量定义
+float angle_to_pulse_1 = 50 * 50 * 32; //90度对应的脉冲，减速比-90度需要的脉冲-细分
+float angle_to_pulse_4 = 50 * 50 * 32; // 4号电机的角度换算
+float angle_to_pulse_5 = 50 * 50 * 32; // 5号电机的角度换算
+float angle_to_pulse_6 = 50 * 50 * 32; // 6号电机的角度换算
+
+u8 direction_1 = 1; // 1号电机的方向
+u8 direction_4 = 1; // 4号电机的方向
+u8 direction_5 = 1; // 5号电机的方向
+u8 direction_6 = 1; // 6号电机的方向
 
 // 函数：位置模式控制命令发送
 u8 CAN_Send_Position_Mode(u32 address, u8 direction, u16 speed, u8 acceleration, u32 pulse_count, u8 position_mode, u8 sync_mode) {
@@ -54,4 +73,40 @@ u8 CAN_Send_Position_Mode(u32 address, u8 direction, u16 speed, u8 acceleration,
 
     // 如果所有帧都成功发送，返回 0
     return 0;
+}
+
+// 控制电机的通用函数
+void Control_Motor(float angle, u8 id) {
+    u32 pulse_count;
+    u8 direction;
+    u32 address;
+
+    // 根据电机ID设置对应的参数
+    switch (id) {
+        case 1:
+            pulse_count = (u32)(angle * angle_to_pulse_1 / 90.0);
+            direction = direction_1;
+            address = 0x100;
+            break;
+        case 4:
+            pulse_count = (u32)(angle * angle_to_pulse_4 / 90.0);
+            direction = direction_4;
+            address = 0x400;
+            break;
+        case 5:
+            pulse_count = (u32)(angle * angle_to_pulse_5 / 90.0);
+            direction = direction_5;
+            address = 0x500;
+            break;
+        case 6:
+            pulse_count = (u32)(angle * angle_to_pulse_6 / 90.0);
+            direction = direction_6;
+            address = 0x600;
+            break;
+        default:
+            return; // 无效ID，直接返回
+    }
+
+    // 调用 CAN_Send_Position_Mode 发送控制命令
+    CAN_Send_Position_Mode(address, direction, 1000, 200, pulse_count, 1, 0);
 }

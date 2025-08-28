@@ -53,7 +53,7 @@ void CAN_BLDC_POS_CONTROL(float angle,u8 motor_id)//angle «Ω«∂»£¨id «1~5,’‚¿Ô”–µ
     u8 tx_buffer[8];
     u8 ieee_tx[4];
     float rad;
-    rad = angle/360 *6.28f;
+    rad = angle*8.0f/360 *6.28f;
     //rad = fmodf(rad,6.28f);
     float_to_bytes(rad,ieee_tx);
     //…Ë÷√Œ™Œª÷√ƒ£ Ω
