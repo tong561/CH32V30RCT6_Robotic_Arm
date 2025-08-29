@@ -14,6 +14,7 @@ RM := rm -rf
 -include Debug/subdir.mk
 -include Core/subdir.mk
 -include Architecture/module/table/subdir.mk
+-include Architecture/module/arm/subdir.mk
 -include Architecture/module/SW/subdir.mk
 -include Architecture/module/STEP/subdir.mk
 -include Architecture/module/BLDC/subdir.mk

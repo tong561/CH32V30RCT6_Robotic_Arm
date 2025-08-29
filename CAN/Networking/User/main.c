@@ -29,7 +29,7 @@
 	DMA_INIT();
 	CAN_Mode_Init( CAN_SJW_1tq, CAN_BS2_5tq, CAN_BS1_6tq, 16, CAN_Mode_Normal );/* Bps = 250Kbps */
 	GPIO_SW_INIT();
-
+	robot_arm_5dof_method2(0,40,49);
 	while(1)
 	{		
 		

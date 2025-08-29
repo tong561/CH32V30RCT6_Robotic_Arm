@@ -31,6 +31,7 @@ Architecture/bsp/uart \
 Architecture/module/BLDC \
 Architecture/module/STEP \
 Architecture/module/SW \
+Architecture/module/arm \
 Architecture/module/table \
 Core \
 Debug \

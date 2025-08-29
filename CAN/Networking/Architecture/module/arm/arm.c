@@ -19,7 +19,7 @@ float bu_chang = 0.1;      // 搜索步长
 
 // 关节角度变量 - 增加J5
 float J1_global = 0, J2_global = 0, J3_global = 0, J4_global = 0, J5_global = 0; 
-void robot_arm_5dof_method2(float X, float Y, float Z) ;
+void robot_arm_5dof_method2(float X, float Y, float Z);
 
 void robot_arm_5dof_method2(float X, float Y, float Z) 
 {
@@ -36,7 +36,7 @@ void robot_arm_5dof_method2(float X, float Y, float Z)
     float cur_height, cur_horizontal;
     
     // 最优解变量
-    float best_J1, best_J2, best_J3, best_J4, best_J5;
+    float best_J1=0, best_J2=0, best_J3=0, best_J4=0, best_J5=0;
     float best_error = INFINITY;
     int solution_count = 0;
     
@@ -78,7 +78,7 @@ void robot_arm_5dof_method2(float X, float Y, float Z)
                 
                 // 限制J5角度范围，保护机械结构 (±135° = ±3π/4)
                 const float J5_MAX = 3.0f * M_PI / 4.0f;   // +135°
-                const float J5_MIN = -3.0f * M_PI / 4.0f;  // -135°
+                //const float J5_MIN = -3.0f * M_PI / 4.0f;  // -135°
                 
                 if (J5 < 0) {
                     J5 = 0;  // 限制最小角度 -135°

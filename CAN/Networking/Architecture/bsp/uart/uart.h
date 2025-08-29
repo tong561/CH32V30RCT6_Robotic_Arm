@@ -3,7 +3,9 @@
 
 #include "debug.h"
 #include "stdint.h"
-// Íâ²¿ÉùÃ÷
+
+typedef void (*recv_callback_func)(uint8_t* data, int len);
+
 extern uint8_t RxBuffer2[10];
 extern volatile uint8_t RxCnt2;
 extern volatile uint8_t Rxfinish2;

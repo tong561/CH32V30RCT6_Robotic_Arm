@@ -1,11 +1,24 @@
 #include "uart.h"
-
+#include <stdio.h>
 void USART3_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
 
 u8 RxBuffer2[10] = {0};                                             
 volatile u8 RxCnt2 = 0;
 volatile u8  Rxfinish2 = 0;
+
+
+
+// 第1步：定义函数指针类型和全局函数指针变量
+
+recv_callback_func uart_recv_callback = NULL;  // 全局函数指针，初始为空
+
+// BSP层提供注册函数给上层调用
+void bsp_register_callback(recv_callback_func callback) 
+{
+    uart_recv_callback = callback;  // 保存上层传来的函数地址
+    printf("BSP: 回调函数已注册\n");
+}
 
 
 /*********************************************************************
@@ -60,6 +73,13 @@ void USART3_IRQHandler(void)
 
         if(RxCnt2 >5)
         {
+            if (uart_recv_callback != NULL) {
+                printf("BSP: 准备调用上层函数...\n");
+                uart_recv_callback(RxBuffer2, RxCnt2);  // 实际调用上层函数！
+            } else {
+                printf("BSP: 没有注册回调函数\n");
+            }
+
             //USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);
             Rxfinish2 = 1;
         }
