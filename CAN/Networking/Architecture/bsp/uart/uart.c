@@ -7,6 +7,7 @@ u8 RxBuffer2[10] = {0};
 volatile u8 RxCnt2 = 0;
 volatile u8  Rxfinish2 = 0;
 
+volatile uint8_t lcd_cmd = 0x00;
 
 
 // 第1步：定义函数指针类型和全局函数指针变量
@@ -69,19 +70,20 @@ void USART3_IRQHandler(void)
 {
     if(USART_GetITStatus(USART3, USART_IT_RXNE) != RESET)
     {
-        RxBuffer2[RxCnt2++] = USART_ReceiveData(USART3);
+        lcd_cmd = USART_ReceiveData(USART3);
+        // RxBuffer2[RxCnt2++] = USART_ReceiveData(USART3);
 
-        if(RxCnt2 >5)
-        {
-            if (uart_recv_callback != NULL) {
-                printf("BSP: 准备调用上层函数...\n");
-                uart_recv_callback(RxBuffer2, RxCnt2);  // 实际调用上层函数！
-            } else {
-                printf("BSP: 没有注册回调函数\n");
-            }
+        // if(RxCnt2 >5)
+        // {
+        //     if (uart_recv_callback != NULL) {
+        //         printf("BSP: 准备调用上层函数...\n");
+        //         uart_recv_callback(RxBuffer2, RxCnt2);  // 实际调用上层函数！
+        //     } else {
+        //         printf("BSP: 没有注册回调函数\n");
+        //     }
 
-            //USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);
-            Rxfinish2 = 1;
-        }
+        //     //USART_ITConfig(USART3, USART_IT_RXNE, DISABLE);
+        //     Rxfinish2 = 1;
+        // }
     }
 }
