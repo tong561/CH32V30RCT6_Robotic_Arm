@@ -49,6 +49,7 @@ void rb_test01(void)
     }
 }
 
+//可以用UI做没有X轴的遥控任务
 void rb_test02(void)
 {
     // 初始XYZ坐标
@@ -92,6 +93,70 @@ void rb_test02(void)
             CAN_BLDC_POS_CONTROL(J3_global, 3);
             Control_Motor(J4_global, 5); // 校准方向，跑初始姿态时对细分和减速比进行调整
             Control_Motor(J5_global, 6); // 模型缺少一个关节，45->56
+
+            // 更新LCD显示的通道数据
+            n0 = (volatile uint32_t)X_IN;
+            n1 = (volatile uint32_t)Y_IN;
+            n2 = (volatile uint32_t)Z_IN;
+            n3 = (volatile uint32_t)J1_global;
+            n4 = (volatile uint32_t)J2_global;
+            n5 = (volatile uint32_t)J3_global;
+            n6 = (volatile uint32_t)J4_global;
+            n7 = (volatile uint32_t)J5_global;
+
+            // 调用LCD发送任务
+            LCD_SendTask();
+        }
+
+        // 模拟100Hz刷新频率
+        Delay_Ms(10);
+    }
+}
+
+void rb_test03(void)
+{
+    // 初始XYZ坐标
+    float X = 0, Y = 40, Z = 49;
+    float prev_X = X, prev_Y = Y, prev_Z = Z; // 用于记录上一次的目标值
+
+    // 锁住两个无刷电机
+    CAN_MOTOR_MODE_SET();
+
+    while (1)
+    {
+        // 调用LCD接收任务，获取按键值
+        uint8_t cmd = LCD_ReceiveTask();
+
+        // 根据接收到的按键值修改 X、Y、Z 的值
+        switch (cmd)
+        {
+            case 0xF1: Z += 5; break; // 上按键，Z+5
+            case 0xF2: Z -= 5; break; // 下按键，Z-5
+            case 0xF3: X -= 5; break; // 左按键，X-5
+            case 0xF4: X += 5; break; // 右按键，X+5
+            case 0xF5: Y += 5; break; // 前按键，Y+5
+            case 0xF6: Y -= 5; break; // 后按键，Y-5
+            default: continue; // 无效按键，跳过本次循环
+        }
+
+        // 检查目标值是否发生变化
+        if (X != prev_X || Y != prev_Y || Z != prev_Z)
+        {
+            // 更新记录的目标值
+            prev_X = X;
+            prev_Y = Y;
+            prev_Z = Z;
+
+            // 调用机械臂运动学计算函数
+            robot_arm_5dof_method2(X, Y, Z);
+
+            // 控制电机位置
+            Control_Motor(90-J1_global, 1);
+            CAN_BLDC_POS_CONTROL(J2_global, 2);
+            CAN_BLDC_POS_CONTROL(J3_global, 3);
+            Control_Motor(J4_global, 5); // 校准方向，跑初始姿态时对细分和减速比进行调整
+            Control_Motor(J5_global, 6); // 模型缺少一个关节，45->56
+            
 
             // 更新LCD显示的通道数据
             n0 = (volatile uint32_t)X_IN;

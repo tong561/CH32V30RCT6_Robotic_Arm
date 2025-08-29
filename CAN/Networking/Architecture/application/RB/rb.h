@@ -6,4 +6,5 @@
 
 void rb_test01(void);
 void rb_test02(void);
+void rb_test03(void);
 #endif

@@ -28,11 +28,11 @@ void robot_arm_5dof_method2(float X, float Y, float Z)
     Y_IN = Y;
     Z_IN = Z;
     // 输入验证：检查是否在盲区内
-    if (X < 0) {
-        printf("错误:目标位置在盲区内,X必须 >= 0\r\n");
-        printf("盲区半径P = %.1fmm,机械臂无法到达X < 0的位置\r\n", P);
-        return;
-    }
+    // if (X < 0) {
+    //     printf("错误:目标位置在盲区内,X必须 >= 0\r\n");
+    //     printf("盲区半径P = %.1fmm,机械臂无法到达X < 0的位置\r\n", P);
+    //     return;
+    // }
     
     // Variable definitions
     float target_height, horizontal_distance;

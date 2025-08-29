@@ -1,5 +1,6 @@
 #include "step.h"
 #include "can.h"
+#include "math.h"
 
 /*
 这里是步进电机的module层代码，can在前面调用BLDC时候已经用过，此处只需要调用api即可控制电机
@@ -80,6 +81,9 @@ void Control_Motor(float angle, u8 id) {
     u32 pulse_count;
     u8 direction;
     u32 address;
+    float angle_ori = angle;
+    if(angle <0)
+        angle = -angle;
 
     // 根据电机ID设置对应的参数
     switch (id) {
@@ -105,6 +109,10 @@ void Control_Motor(float angle, u8 id) {
             break;
         default:
             return; // 无效ID，直接返回
+    }
+        // 如果角度为负值，取反方向
+    if (angle_ori < 0) {
+        direction = !direction;
     }
 
     // 调用 CAN_Send_Position_Mode 发送控制命令

@@ -275,7 +275,7 @@ void CAN_SoftSlaveStartBank(uint8_t CAN_BankNumber)
 	 CAN_InitSturcture.CAN_TTCM = DISABLE;		
 	 CAN_InitSturcture.CAN_ABOM = DISABLE;		
 	 CAN_InitSturcture.CAN_AWUM = DISABLE;		
-	 CAN_InitSturcture.CAN_NART = ENABLE;		
+	 CAN_InitSturcture.CAN_NART = DISABLE;		
 	 CAN_InitSturcture.CAN_RFLM = DISABLE;		
 	 CAN_InitSturcture.CAN_TXFP = DISABLE;
 	 CAN_InitSturcture.CAN_Mode = mode;
