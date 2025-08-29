@@ -12,15 +12,15 @@
 #define MAX_FRAME_LEN 8
 
 // 全局变量定义
-float angle_to_pulse_1 = 50 * 50 * 32; //90度对应的脉冲，减速比-90度需要的脉冲-细分
+float angle_to_pulse_1 = 200 * 50 * 32; //90度对应的脉冲，减速比-90度需要的脉冲-细分
 float angle_to_pulse_4 = 50 * 50 * 32; // 4号电机的角度换算
 float angle_to_pulse_5 = 50 * 50 * 32; // 5号电机的角度换算
-float angle_to_pulse_6 = 50 * 50 * 32; // 6号电机的角度换算
+float angle_to_pulse_6 = 30 * 50 * 32; // 6号电机的角度换算
 
 u8 direction_1 = 1; // 1号电机的方向
 u8 direction_4 = 1; // 4号电机的方向
 u8 direction_5 = 1; // 5号电机的方向
-u8 direction_6 = 1; // 6号电机的方向
+u8 direction_6 = 0; // 6号电机的方向
 
 // 函数：位置模式控制命令发送
 u8 CAN_Send_Position_Mode(u32 address, u8 direction, u16 speed, u8 acceleration, u32 pulse_count, u8 position_mode, u8 sync_mode) {

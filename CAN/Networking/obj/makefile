@@ -22,6 +22,7 @@ RM := rm -rf
 -include Architecture/bsp/uart/subdir.mk
 -include Architecture/bsp/gpio/subdir.mk
 -include Architecture/bsp/can/subdir.mk
+-include Architecture/application/RB/subdir.mk
 -include subdir.mk
 -include objects.mk
 

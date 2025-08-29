@@ -25,6 +25,7 @@ SECONDARY_SIZE :=
 CALLGRAPH_DOT := callgraph.dot \
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Architecture/application/RB \
 Architecture/bsp/can \
 Architecture/bsp/gpio \
 Architecture/bsp/uart \

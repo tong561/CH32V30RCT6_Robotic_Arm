@@ -17,12 +17,16 @@ float P = 10.0;   // 底部盲区半径
 float tolerance = 1.0;     // 位置容差
 float bu_chang = 0.1;      // 搜索步长
 
+volatile float X_IN=0,Y_IN=0,Z_IN=0;
 // 关节角度变量 - 增加J5
 float J1_global = 0, J2_global = 0, J3_global = 0, J4_global = 0, J5_global = 0; 
 void robot_arm_5dof_method2(float X, float Y, float Z);
 
 void robot_arm_5dof_method2(float X, float Y, float Z) 
 {
+    X_IN = X;
+    Y_IN = Y;
+    Z_IN = Z;
     // 输入验证：检查是否在盲区内
     if (X < 0) {
         printf("错误:目标位置在盲区内,X必须 >= 0\r\n");
@@ -122,13 +126,14 @@ void robot_arm_5dof_method2(float X, float Y, float Z)
     if (solution_count > 0) {
         printf("总共找到 %d 个解决方案\r\n", solution_count);
         printf("最优解误差: %.3f\r\n", best_error);
-        
+
+        //到这一步为止，best_J1是最优结果的弧度制，J1_global是最优结果的角度制
         // 设置全局变量
-        J1_global = best_J1;
-        J2_global = best_J2;
-        J3_global = best_J3;
-        J4_global = best_J4;
-        J5_global = best_J5;
+        J1_global = best_J1* 180.0f / M_PI;
+        J2_global = best_J2* 180.0f / M_PI;
+        J3_global = best_J3* 180.0f / M_PI;
+        J4_global = best_J4* 180.0f / M_PI;
+        J5_global = best_J5* 180.0f / M_PI;
         
         // 打印最优解
         printf("最优解角度 (度): J1=%.1f, J2=%.1f, J3=%.1f, J4=%.1f, J5=%.1f\r\n", 

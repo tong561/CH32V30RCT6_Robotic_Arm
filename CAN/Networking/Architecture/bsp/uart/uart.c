@@ -2,7 +2,6 @@
 #include <stdio.h>
 void USART3_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
-
 u8 RxBuffer2[10] = {0};                                             
 volatile u8 RxCnt2 = 0;
 volatile u8  Rxfinish2 = 0;
