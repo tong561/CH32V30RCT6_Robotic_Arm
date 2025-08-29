@@ -5,4 +5,5 @@
 #include "stdint.h"
 
 void rb_test01(void);
+void rb_test02(void);
 #endif
