@@ -24,7 +24,8 @@ u8 direction_5 = 1; // 5号电机的方向
 u8 direction_6 = 1; // 6号电机的方向
 
 // 函数：位置模式控制命令发送
-u8 CAN_Send_Position_Mode(u32 address, u8 direction, u16 speed, u8 acceleration, u32 pulse_count, u8 position_mode, u8 sync_mode) {
+u8 CAN_Send_Position_Mode(u32 address, u8 direction, u16 speed, u8 acceleration, u32 pulse_count, u8 position_mode, u8 sync_mode) 
+{
     u8 msg[10];  // 12 字节固定数据（不包括功能码和校验字节）
     u8 i = 0;
 
@@ -77,7 +78,8 @@ u8 CAN_Send_Position_Mode(u32 address, u8 direction, u16 speed, u8 acceleration,
 }
 
 // 控制电机的通用函数
-void Control_Motor(float angle, u8 id) {
+void Control_Motor(float angle, u8 id) 
+{
     u32 pulse_count;
     u8 direction;
     u32 address;
