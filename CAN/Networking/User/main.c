@@ -33,12 +33,8 @@
     //rb_test02();
     //rb_test03();
 
-	// CAN_BLDC_POS_CONTROL(0,2);
-    // CAN_BLDC_POS_CONTROL(0,3);
-    Control_Motor(-120,5);//需要先校准方向，跑初始姿态的时候对一下细分和减速比
-    Control_Motor(-100,6);//此处注意，模型是缺了一个关节的，所以45->56
-    
-    //Control_Motor(0,1);
+
+    rb_test03();
 
 	while(1)
 	{		

@@ -121,6 +121,12 @@ void rb_test03(void)
 
     // 锁住两个无刷电机
     CAN_MOTOR_MODE_SET();
+    CAN_BLDC_POS_CONTROL(0,2);
+    CAN_BLDC_POS_CONTROL(0,3);
+    Control_Motor(0,4);
+    Control_Motor(0,5);//需要先校准方向，跑初始姿态的时候对一下细分和减速比
+    Control_Motor(0,6);//此处注意，模型是缺了一个关节的，所以45->56
+    Control_Motor(0,1);
 
     while (1)
     {
@@ -130,8 +136,16 @@ void rb_test03(void)
         // 根据接收到的按键值修改 X、Y、Z 的值
         switch (cmd)
         {
-            case 0xF1: Z += 5; break; // 上按键，Z+5
-            case 0xF2: Z -= 5; break; // 下按键，Z-5
+            // case 0xF1: Z += 5; break; // 上按键，Z+5
+            // case 0xF2: Z -= 5; break; // 下按键，Z-5
+            case 0xF1:
+                        CAN_BLDC_POS_CONTROL(0,2);
+                        CAN_BLDC_POS_CONTROL(0,3);
+                        Control_Motor(0,4);
+                        Control_Motor(0,5);//需要先校准方向，跑初始姿态的时候对一下细分和减速比
+                        Control_Motor(0,6);//此处注意，模型是缺了一个关节的，所以45->56
+                        Control_Motor(0,1);
+                        break;
             case 0xF3: X -= 5; break; // 左按键，X-5
             case 0xF4: X += 5; break; // 右按键，X+5
             case 0xF5: Y += 5; break; // 前按键，Y+5
@@ -157,7 +171,8 @@ void rb_test03(void)
             Control_Motor(J4_global, 5); // 校准方向，跑初始姿态时对细分和减速比进行调整
             Control_Motor(J5_global, 6); // 模型缺少一个关节，45->56
             
-
+            if(J2_global<0)
+                J2_global = -J2_global * 100;
             // 更新LCD显示的通道数据
             n0 = (volatile uint32_t)X_IN;
             n1 = (volatile uint32_t)Y_IN;
