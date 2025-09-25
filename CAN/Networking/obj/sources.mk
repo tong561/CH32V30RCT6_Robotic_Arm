@@ -36,6 +36,7 @@ Architecture/module/IR \
 Architecture/module/LCD \
 Architecture/module/STEP \
 Architecture/module/SW \
+Architecture/module/TOF \
 Architecture/module/WT61 \
 Architecture/module/arm \
 Architecture/module/table \

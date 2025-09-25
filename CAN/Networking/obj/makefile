@@ -16,6 +16,7 @@ RM := rm -rf
 -include Architecture/module/table/subdir.mk
 -include Architecture/module/arm/subdir.mk
 -include Architecture/module/WT61/subdir.mk
+-include Architecture/module/TOF/subdir.mk
 -include Architecture/module/SW/subdir.mk
 -include Architecture/module/STEP/subdir.mk
 -include Architecture/module/LCD/subdir.mk

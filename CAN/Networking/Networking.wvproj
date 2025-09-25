@@ -168,7 +168,8 @@
 							"${project}/Architecture/bsp/exti",
 							"${project}/Architecture/bsp/tim",
 							"${project}/Architecture/module/IR",
-							"${project}/Architecture/module/WT61"
+							"${project}/Architecture/module/WT61",
+							"${project}/Architecture/module/TOF"
 						],
 						"include_system_paths": [],
 						"include_files": []

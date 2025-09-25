@@ -138,36 +138,3 @@ void USART2_IRQHandler(void)
 
 
 
-/**
- * 从数据中提取距离值
- * @param buffer 数据缓冲区
- * @param length 数据长度
- * @return 提取到的距离值，失败返回0
- */
-u16 extract_distance(char* buffer, int length)
-{
-    // 确保字符串结尾
-    buffer[length] = '\0';
-    
-    // 查找目标字符串
-    char* found = strstr(buffer, "ID:61 1 55 4c,dTOF(mm):");
-    if (found == NULL) {
-        return 0;  // 没找到目标字符串
-    }
-    
-    // 跳过固定部分，指向数字
-    found += strlen("ID:61 1 55 4c,dTOF(mm):");
-    
-    // 提取数字
-    u16 distance = (u16)atoi(found);
-    // u16 distance = 0;
-    // sscanf(found, "%d", &distance);
-    // u16 distance = 0;
-    // while(*found >= '0' && *found <= '9')
-    // {
-    //     distance = distance * 10 + (*found - '0');
-    //     found++;
-    // }
-    
-    return distance;
-}
