@@ -48,12 +48,36 @@ void CAN_MOTOR_MODE_SET(void)
     CAN_Send_Msg(tx_buffer,8,1,(u32)0x03<<5 | 0x07);
 }
 
+// 在文件头部添加偏置开关宏定义
+//#define ENABLE_MOTOR_OFFSET  // 注释掉这行就禁用偏置
 void CAN_BLDC_POS_CONTROL(float angle,u8 motor_id)//angle是角度，id是1~5,这里有单圈绝对值
 {
     u8 tx_buffer[8];
     u8 ieee_tx[4];
     float rad;
-    rad = angle*8.0f/360 *6.28f;
+    
+#ifdef ENABLE_MOTOR_OFFSET
+    // 根据电机ID添加偏置
+    if(motor_id == 0x02) // J2电机
+    {
+        angle += (-1.0f) * (3.1415926f/2) / 6.28f * 360 * 8; // 添加J2偏置：-90°*8 = -720°
+    }
+    else if(motor_id == 0x03) // J3电机  
+    {
+        angle = -angle + 3.1415926f / 6.28f * 360 * 8; // J3偏置处理：反号+180°*8 = 1440°
+    }
+#else
+    // 不使用偏置，保持原始angle
+    // angle = angle; // 实际上不需要做任何处理
+#endif
+    
+    if(motor_id == 0x02)
+        angle+=98;
+    else if(motor_id == 0X03)
+    {
+        angle = -(180 - angle);
+    }
+    rad = angle*8.0f/360 * 3.1415926f *2;
     //rad = fmodf(rad,6.28f);
     float_to_bytes(rad,ieee_tx);
     //设置为位置模式

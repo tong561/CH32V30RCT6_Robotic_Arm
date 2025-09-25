@@ -164,7 +164,11 @@
 							"${project}/Architecture/module",
 							"${project}/Architecture/module/SW",
 							"${project}/Architecture/module/table",
-							"${project}/Architecture/application/RB"
+							"${project}/Architecture/application/RB",
+							"${project}/Architecture/bsp/exti",
+							"${project}/Architecture/bsp/tim",
+							"${project}/Architecture/module/IR",
+							"${project}/Architecture/module/WT61"
 						],
 						"include_system_paths": [],
 						"include_files": []
@@ -358,7 +362,7 @@
 		"address": "0x08000000",
 		"target_path": "obj\\Networking.hex",
 		"clkSpeed": "High",
-		"debug_interface_mode": "",
+		"debug_interface_mode": "1-wire serial",
 		"erase": true,
 		"program": true,
 		"verify": true,

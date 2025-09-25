@@ -51,16 +51,6 @@ void HardFault_Handler(void)
  *
  * @return  none
  */
-void EXTI0_IRQHandler(void)
-{
-  if(EXTI_GetITStatus(EXTI_Line0)!=RESET)
-  {
-#if 0
-    printf("Run at EXTI\r\n");
 
-#endif
-    EXTI_ClearITPendingBit(EXTI_Line0);     /* Clear Flag */
-  }
-}
 
 

@@ -12,16 +12,29 @@
 */
 #define MAX_FRAME_LEN 8
 
-// 全局变量定义
-float angle_to_pulse_1 = 200 * 50 * 32; //90度对应的脉冲，减速比-90度需要的脉冲-细分
-float angle_to_pulse_4 = 50 * 50 * 32; // 4号电机的角度换算
-float angle_to_pulse_5 = 30 * 50 * 32; // 5号电机的角度换算
-float angle_to_pulse_6 = 100 * 50 * 32; // 6号电机的角度换算
+// 全局变量定义 - 角度转脉冲系数
+float angle_to_pulse_1 = 200 * 50 * 32;  // 1号电机：90度对应的脉冲，减速比-90度需要的脉冲-细分
+float angle_to_pulse_4 = 50 * 50 * 32;   // 4号电机的角度换算
+float angle_to_pulse_5 = 30 * 50 * 32;   // 5号电机的角度换算
+float angle_to_pulse_6 = 100 * 50 * 32;  // 6号电机的角度换算
 
+// 全局变量定义 - 方向
 u8 direction_1 = 1; // 1号电机的方向
 u8 direction_4 = 1; // 4号电机的方向
 u8 direction_5 = 1; // 5号电机的方向
 u8 direction_6 = 1; // 6号电机的方向
+
+// 全局变量定义 - 速度（每个电机独立配置）
+u16 speed_1 = 2000;  // 1号电机的速度
+u16 speed_4 = 1500;  // 4号电机的速度
+u16 speed_5 = 1000;  // 5号电机的速度
+u16 speed_6 = 2000;  // 6号电机的速度
+
+// 全局变量定义 - 加速度（每个电机独立配置）
+u8 acceleration_1 = 200;   // 1号电机的加速度
+u8 acceleration_4 = 100;   // 4号电机的加速度
+u8 acceleration_5 = 100;    // 5号电机的加速度
+u8 acceleration_6 = 200;   // 6号电机的加速度
 
 // 函数：位置模式控制命令发送
 u8 CAN_Send_Position_Mode(u32 address, u8 direction, u16 speed, u8 acceleration, u32 pulse_count, u8 position_mode, u8 sync_mode) 
@@ -83,8 +96,11 @@ void Control_Motor(float angle, u8 id)
     u32 pulse_count;
     u8 direction;
     u32 address;
+    u16 speed;
+    u8 acceleration;
     float angle_ori = angle;
-    if(angle <0)
+    
+    if(angle < 0)
         angle = -angle;
 
     // 根据电机ID设置对应的参数
@@ -93,30 +109,39 @@ void Control_Motor(float angle, u8 id)
             pulse_count = (u32)(angle * angle_to_pulse_1 / 90.0);
             direction = direction_1;
             address = 0x100;
+            speed = speed_1;
+            acceleration = acceleration_1;
             break;
         case 4:
             pulse_count = (u32)(angle * angle_to_pulse_4 / 90.0);
             direction = direction_4;
             address = 0x400;
+            speed = speed_4;
+            acceleration = acceleration_4;
             break;
         case 5:
             pulse_count = (u32)(angle * angle_to_pulse_5 / 90.0);
             direction = direction_5;
             address = 0x500;
+            speed = speed_5;
+            acceleration = acceleration_5;
             break;
         case 6:
             pulse_count = (u32)(angle * angle_to_pulse_6 / 90.0);
             direction = direction_6;
             address = 0x600;
+            speed = speed_6;
+            acceleration = acceleration_6;
             break;
         default:
             return; // 无效ID，直接返回
     }
-        // 如果角度为负值，取反方向
+    
+    // 如果角度为负值，取反方向
     if (angle_ori < 0) {
         direction = !direction;
     }
 
-    // 调用 CAN_Send_Position_Mode 发送控制命令
-    CAN_Send_Position_Mode(address, direction, 1000, 200, pulse_count, 1, 0);
+    // 调用 CAN_Send_Position_Mode 发送控制命令，使用各电机独立的速度和加速度
+    CAN_Send_Position_Mode(address, direction, speed, acceleration, pulse_count, 1, 0);
 }

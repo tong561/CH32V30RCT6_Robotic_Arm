@@ -68,7 +68,7 @@ void robot_arm_5dof_method2(float X, float Y, float Z)
     {
         for (float J3 = 0; J3 < M_PI; J3 += bu_chang)
         {
-            for (float J4 = 0; J4 < M_PI; J4 += bu_chang)
+            for (float J4 = 0; J4 < 115.0f * M_PI / 180.0f; J4 += bu_chang)
             {
                 // 计算三角函数值 (只需要前4个关节)
                 fast_sin_cos(J2, &s2, &c2);

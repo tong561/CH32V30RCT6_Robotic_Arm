@@ -36,12 +36,13 @@
  *
  * @return  none
  */
+ u32 count = 0;
 void TIM1_UP_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void TIM1_UP_IRQHandler(void)
 {
     if(TIM_GetITStatus(TIM1, TIM_IT_Update)==SET)
     {
-        printf("--------updata\r\n");
+        count++;
     }
     TIM_ClearITPendingBit( TIM1, TIM_IT_Update );
 }
@@ -58,7 +59,6 @@ void TIM1_UP_IRQHandler(void)
  */
 void TIM1_INT_Init( u16 arr, u16 psc)
 {
-
     NVIC_InitTypeDef NVIC_InitStructure={0};
     TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure={0};
 
@@ -80,7 +80,6 @@ void TIM1_INT_Init( u16 arr, u16 psc)
     NVIC_Init(&NVIC_InitStructure);
 
     TIM_ITConfig(TIM1, TIM_IT_Update, ENABLE);
-
 }
 
 /*********************************************************************
@@ -102,7 +101,7 @@ int main(void)
     printf("SystemClk:%d\r\n",SystemCoreClock);
     printf( "ChipID:%08x\r\n", DBGMCU_GetCHIPID() );
 
-    TIM1_INT_Init( 200-1, 48000-1);
+    TIM1_INT_Init( 240-1, 1-1);
 #if(MODE==MODE1)
 
     TIM_Cmd( TIM1, ENABLE );
@@ -113,5 +112,9 @@ int main(void)
 
 #endif
 
-    while(1);
+    while(1)
+    {
+        printf("count is %lu\r\n",count);
+        Delay_Ms(1000);
+    }
 }

@@ -267,7 +267,7 @@ void DMA1_Channel5_IRQHandler(void)
 //     memcpy(g_rx_data_buffer, USART_DMA_CTRL.Rx_Buffer[oldbuffer], rxlen);
 //     g_rx_data_len = rxlen;
 //     g_rx_data_ready = 1;  // 置位数据就绪标志
-    
+//     printf("len %d\r\n", g_rx_data_len);
 //     // 如果仍需要环形缓冲区功能，保留这行；否则可以注释掉
 //     //ring_buffer_push_huge(USART_DMA_CTRL.Rx_Buffer[oldbuffer], rxlen);
     

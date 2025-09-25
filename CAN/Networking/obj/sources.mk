@@ -27,12 +27,16 @@ CALLGRAPH_DOT := callgraph.dot \
 SUBDIRS := \
 Architecture/application/RB \
 Architecture/bsp/can \
+Architecture/bsp/exti \
 Architecture/bsp/gpio \
+Architecture/bsp/tim \
 Architecture/bsp/uart \
 Architecture/module/BLDC \
+Architecture/module/IR \
 Architecture/module/LCD \
 Architecture/module/STEP \
 Architecture/module/SW \
+Architecture/module/WT61 \
 Architecture/module/arm \
 Architecture/module/table \
 Core \
