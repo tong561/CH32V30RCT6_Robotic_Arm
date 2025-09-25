@@ -367,8 +367,8 @@ void rb_test05(void)
             default: break;; // 无效按键，跳过本次循环
         }
         ir_command = 0;
-        tof_run(); 
-        get_angle();
+        // tof_run(); 
+        // get_angle();
         // 检查目标值是否发生变化
         if (X != prev_X || Y != prev_Y || Z != prev_Z)
         {

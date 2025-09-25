@@ -133,7 +133,7 @@ void robot_arm_5dof_method2(float X, float Y, float Z)
         J2_global = best_J2* 180.0f / M_PI;
         J3_global = best_J3* 180.0f / M_PI;
         J4_global = best_J4* 180.0f / M_PI;
-        J5_global = best_J5* 180.0f / M_PI;
+        J5_global = best_J5* 180.0f / M_PI - 15;
         
         // 打印最优解
         printf("最优解角度 (度): J1=%.1f, J2=%.1f, J3=%.1f, J4=%.1f, J5=%.1f\r\n", 
