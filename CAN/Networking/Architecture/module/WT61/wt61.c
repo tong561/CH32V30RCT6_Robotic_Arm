@@ -4,7 +4,8 @@
  */
 #include "wt61.h"
 #include <stdint.h>
-
+#include "uart.h"
+#include "uart_dma.h"
 // 全局变量定义
 float Roll_angle = 0.0f;    // 滚转角
 float Pitch_angle = 0.0f;   // 俯仰角
@@ -80,6 +81,38 @@ uint8_t parse_wt_protocol(uint8_t *data_array, uint8_t data_length)
     }
     
     return 2; // 未找到角度数据
+}
+
+void get_angle(void)
+{
+        if (ring_buffer.RemainCount > 0)
+        {
+            g_rx_data_len = ring_buffer.RemainCount;
+            //printf("recv %d >>>\n", g_rx_data_len);
+            static u8 count;
+            count = 0;
+            while (ring_buffer.RemainCount > 0)
+            {
+                g_rx_data_buffer[count] = ring_buffer_pop();
+                //printf("%02x ", g_rx_data_buffer[count]);
+                count++;
+            }
+            //printf("\n<<<\n");
+                // 解析数据
+            uint8_t result = parse_wt_protocol(g_rx_data_buffer, g_rx_data_len);
+            
+            if(result == 0)
+            {
+                // 解析成功，可以使用全局变量
+                printf("%.2f,%.2f,%.2f\r\n", 
+                    Roll_angle, Pitch_angle, Yaw_angle);
+            }
+            else
+            {
+                printf("解析错误，错误码: %d\n", result);
+            }
+        }
+
 }
 /* 使用示例：
 int main()

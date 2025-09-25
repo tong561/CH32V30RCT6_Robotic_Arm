@@ -8,7 +8,7 @@
 // 外部变量声明
 extern u16 distance_buffer[5];
 extern u8 buffer_count;
-
+extern int filter_result;
 // 外部函数声明
 u16 extract_distance(char* buffer, int length);
 int filter_distance_data(u16* distances, int length);

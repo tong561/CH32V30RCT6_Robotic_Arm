@@ -12,6 +12,10 @@ extern volatile uint32_t n4;
 extern volatile uint32_t n5;
 extern volatile uint32_t n6;
 extern volatile uint32_t n7;
+extern volatile uint32_t n8;
+extern volatile uint32_t n9;
+extern volatile uint32_t n10;
+extern volatile uint32_t n11;
 
 void LCD_SendTask(void);
 uint8_t LCD_ReceiveTask(void);

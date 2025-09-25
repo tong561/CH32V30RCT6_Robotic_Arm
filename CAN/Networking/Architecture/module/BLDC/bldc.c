@@ -75,7 +75,7 @@ void CAN_BLDC_POS_CONTROL(float angle,u8 motor_id)//angle «Ω«∂»£¨id «1~5,’‚¿Ô”–µ
         angle+=98;
     else if(motor_id == 0X03)
     {
-        angle = -(180 - angle);
+        angle = -(170 - angle);
     }
     rad = angle*8.0f/360 * 3.1415926f *2;
     //rad = fmodf(rad,6.28f);

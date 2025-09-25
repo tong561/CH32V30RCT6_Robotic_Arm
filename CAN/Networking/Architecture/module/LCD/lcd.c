@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// 声明8个全局变量，对应显示通道 n0~n7，添加 volatile 属性
+// 声明12个全局变量，对应显示通道 n0~n11，添加 volatile 属性
 volatile uint32_t n0 = 0;
 volatile uint32_t n1 = 0;
 volatile uint32_t n2 = 0;
@@ -13,6 +13,10 @@ volatile uint32_t n4 = 0;
 volatile uint32_t n5 = 0;
 volatile uint32_t n6 = 0;
 volatile uint32_t n7 = 0;
+volatile uint32_t n8 = 0;
+volatile uint32_t n9 = 0;
+volatile uint32_t n10 = 0;
+volatile uint32_t n11 = 0;
 
 // LCD发送任务
 void LCD_SendTask(void) 
@@ -22,9 +26,10 @@ void LCD_SendTask(void)
     UART_Status_t status;
 
     // 定义一个数组存储全局变量的指针
-    uint32_t *channels[] = {&n0, &n1, &n2, &n3, &n4, &n5, &n6, &n7};
+    uint32_t *channels[] = {&n0, &n1, &n2, &n3, &n4, &n5, &n6, &n7, 
+                           &n8, &n9, &n10, &n11};
 
-    for (int i = 0; i < 8; i++) 
+    for (int i = 0; i < 12; i++) 
     {
         // 构造数据帧字符串，例如 "page0.n0.val=3\xFF\xFF\xFF"
         snprintf(data_frame, sizeof(data_frame), "page0.n%d.val=%d", i, *channels[i]);
@@ -44,6 +49,7 @@ void LCD_SendTask(void)
         }
     }
 }
+
 uint8_t LCD_ReceiveTask(void) 
 {
     uint8_t return_cmd = 0;
@@ -78,6 +84,3 @@ uint8_t LCD_ReceiveTask(void)
     }
     return return_cmd;
 }
-
-
-

@@ -11,7 +11,7 @@ extern float Pitch_angle;   // ¸©Ñö½Ç
 extern float Yaw_angle;     // Æ«º½½Ç
 
 uint8_t parse_wt_protocol(uint8_t *data_array, uint8_t data_length);
-
+void get_angle(void);
 #endif
 
 

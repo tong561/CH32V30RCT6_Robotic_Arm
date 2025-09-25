@@ -5,7 +5,7 @@
 // 全局数组用于存储有效距离数据
 u16 distance_buffer[5] = {0};  // 存储5次有效距离
 u8 buffer_count = 0;           // 当前存储的数据个数
-
+int filter_result;
 /**
  * 从数据中提取距离值
  * @param buffer 数据缓冲区
@@ -129,7 +129,7 @@ void tof_run(void)
                 if(buffer_count >= 3)
                 {
                     // 调用滤波函数
-                    int filter_result = filter_distance_data(distance_buffer, 3);
+                    filter_result = filter_distance_data(distance_buffer, 3);
                     
                     // 打印滤波结果
                     if(filter_result == -1)

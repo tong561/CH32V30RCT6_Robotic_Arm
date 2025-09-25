@@ -37,18 +37,19 @@
     EXTI0_INT_INIT();
     TIM_Cmd(TIM1, ENABLE);
 	CAN_Mode_Init(CAN_SJW_1tq, CAN_BS2_5tq, CAN_BS1_6tq, 16, CAN_Mode_Normal);/* Bps = 250Kbps */
+    rb_test05();
     //rb_test04();
 	// 锁住两个无刷电机
       //CAN_MOTOR_MODE_SET();
-      //CAN_BLDC_POS_CONTROL(-97,2);
+        //CAN_BLDC_POS_CONTROL(-97-98,2);
       //CAN_BLDC_POS_CONTROL(-100,3);
     // Control_Motor(0,4);
-    // Control_Motor(0,5);//需要先校准方向，跑初始姿态的时候对一下细分和减速比
+    //Control_Motor(45,5);//需要先校准方向，跑初始姿态的时候对一下细分和减速比
     // Control_Motor(0,6);//此处注意，模型是缺了一个关节的，所以45->56
     // Control_Motor(0,1);
     while(1)
 	{
-        tof_run(); 
+        
     }
  }
  
