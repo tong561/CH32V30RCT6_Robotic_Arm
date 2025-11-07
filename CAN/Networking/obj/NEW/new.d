@@ -1,0 +1,117 @@
+NEW/new.o: ../NEW/new.c ../NEW/new.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/arm/arm.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Debug/debug.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Core/core_riscv.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/User/system_ch32v30x.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/User/ch32v30x_conf.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_adc.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_bkp.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_can.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_crc.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_dac.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_dbgmcu.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_dma.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_exti.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_flash.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_fsmc.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_gpio.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_i2c.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_iwdg.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_pwr.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_rcc.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_rtc.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_sdio.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_spi.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_tim.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_usart.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_wwdg.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/User/ch32v30x_it.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/LCD/lcd.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/BLDC/bldc.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/STEP/step.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/IR/ir.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/TOF/tof.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/WT61/wt61.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/bsp/tim/tim.h \
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/SW/sw.h
+
+../NEW/new.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/arm/arm.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Debug/debug.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Core/core_riscv.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/User/system_ch32v30x.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/User/ch32v30x_conf.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_adc.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_bkp.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_can.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_crc.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_dac.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_dbgmcu.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_dma.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_exti.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_flash.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_fsmc.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_gpio.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_i2c.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_iwdg.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_pwr.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_rcc.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_rtc.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_sdio.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_spi.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_tim.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_usart.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_wwdg.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/User/ch32v30x_it.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Peripheral/inc/ch32v30x_misc.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/LCD/lcd.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/BLDC/bldc.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/STEP/step.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/IR/ir.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/TOF/tof.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/WT61/wt61.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/bsp/tim/tim.h:
+
+c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/CAN/Networking/Architecture/module/SW/sw.h:

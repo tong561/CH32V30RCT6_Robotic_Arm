@@ -42,6 +42,7 @@ Architecture/module/arm \
 Architecture/module/table \
 Core \
 Debug \
+NEW \
 Peripheral/src \
 Startup \
 User \

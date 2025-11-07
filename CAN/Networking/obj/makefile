@@ -11,6 +11,7 @@ RM := rm -rf
 -include User/subdir.mk
 -include Startup/subdir.mk
 -include Peripheral/src/subdir.mk
+-include NEW/subdir.mk
 -include Debug/subdir.mk
 -include Core/subdir.mk
 -include Architecture/module/table/subdir.mk
@@ -70,7 +71,7 @@ main-build: Networking.elf secondary-outputs
 
 # Tool invocations
 Networking.elf: $(OBJS) $(USER_OBJS)
-	@	riscv-none-embed-gcc -march=rv32imafcxw -mabi=ilp32f -msmall-data-limit=8 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -fsingle-precision-constant -Wunused -Wuninitialized -g -T "e:/上海理疗机械臂金主/CH32V307EVT (1)/EVT/EXAM/SRC/Ld/Link.ld" -nostartfiles -Xlinker --gc-sections -Xlinker --print-memory-usage -Wl,-Map,"Networking.map" --specs=nano.specs --specs=nosys.specs -o "Networking.elf" $(OBJS)  $(LIBS) -lprintfloat
+	@	riscv-none-embed-gcc -march=rv32imafcxw -mabi=ilp32f -msmall-data-limit=8 -msave-restore -fmax-errors=20 -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -fno-common -fsingle-precision-constant -Wunused -Wuninitialized -g -T "c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Ld/Link.ld" -nostartfiles -Xlinker --gc-sections -Xlinker --print-memory-usage -Wl,-Map,"Networking.map" --specs=nano.specs --specs=nosys.specs -o "Networking.elf" $(OBJS)  $(LIBS) -lprintfloat
 Networking.hex: Networking.elf
 	@	riscv-none-embed-objcopy -O ihex "Networking.elf" "Networking.hex"
 Networking.lst: Networking.elf

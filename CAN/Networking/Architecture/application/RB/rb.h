@@ -3,10 +3,13 @@
 
 #include "debug.h"
 #include "stdint.h"
+#include "new.h"
 
 void rb_test01(void);
 void rb_test02(void);
 void rb_test03(void);
 void rb_test04(void);
 void rb_test05(void);
+void rb_test06(void);
+
 #endif

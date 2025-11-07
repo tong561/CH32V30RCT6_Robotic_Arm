@@ -13,6 +13,8 @@ extern int filter_result;
 u16 extract_distance(char* buffer, int length);
 int filter_distance_data(u16* distances, int length);
 void tof_run(void);
+float new_tof();
+float filtered_tof();
 #endif
 
 

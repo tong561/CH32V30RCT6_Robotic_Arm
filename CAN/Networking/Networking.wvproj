@@ -169,7 +169,8 @@
 							"${project}/Architecture/bsp/tim",
 							"${project}/Architecture/module/IR",
 							"${project}/Architecture/module/WT61",
-							"${project}/Architecture/module/TOF"
+							"${project}/Architecture/module/TOF",
+							"${project}/NEW"
 						],
 						"include_system_paths": [],
 						"include_files": []

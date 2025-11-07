@@ -5,6 +5,7 @@
 #include "stdint.h"
 
 // 外部声明全局变量
+extern float J1, J2, J3, J4;//new
 extern float J1_global;
 extern float J2_global;
 extern float J3_global;

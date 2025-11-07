@@ -1,2 +1,2 @@
 Core/core_riscv.o: \
- e:/上海理疗机械臂金主/CH32V307EVT\ (1)/EVT/EXAM/SRC/Core/core_riscv.c
+ c:/Users/ton/Desktop/CH32/EVT/EVT/EXAM/SRC/Core/core_riscv.c

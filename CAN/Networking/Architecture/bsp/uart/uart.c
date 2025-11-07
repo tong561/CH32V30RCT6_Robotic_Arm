@@ -10,7 +10,7 @@ volatile u8  Rxfinish2 = 0;
 volatile uint8_t lcd_cmd = 0x00;
 //以下为串口2相关变量
 // 全局变量
-volatile char rx_buffer_uart2[60];             // 串口接收缓冲区（50字节+余量）
+volatile unsigned char rx_buffer_uart2[60];             // 串口接收缓冲区（50字节+余量）
 volatile int rx_len_uart2 = 0;                 // 当前接收数据长度
 volatile int frame_ready = 0;                  // 帧接收完成标志
 
@@ -80,8 +80,8 @@ void USART23_CFG(void)
     NVIC_Init(&NVIC_InitStructure);
 
     NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 2;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 
@@ -125,7 +125,7 @@ void USART2_IRQHandler(void)
             rx_len_uart2++;                  
             
             // 检查是否达到50个数据         
-            if(rx_len_uart2 >= 50)         
+            if(rx_len_uart2 >= 13)         
             {             
                 frame_ready = 1;  // 标记帧接收完成，可以处理数据
                 // 注意：这里不清空缓冲区，等待主程序处理完后再清空

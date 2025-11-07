@@ -104,12 +104,13 @@ void get_angle(void)
             if(result == 0)
             {
                 // 解析成功，可以使用全局变量
-                printf("%.2f,%.2f,%.2f\r\n", 
-                    Roll_angle, Pitch_angle, Yaw_angle);
+                // printf("%.2f,%.2f,%.2f\r\n", 
+                //     Roll_angle, Pitch_angle, Yaw_angle);
+                //printf("%.2f\r\n",Pitch_angle);
             }
             else
             {
-                printf("解析错误，错误码: %d\n", result);
+                ;//printf("解析错误，错误码: %d\n", result);
             }
         }
 

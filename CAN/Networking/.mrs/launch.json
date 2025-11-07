@@ -5,12 +5,12 @@
 			"type": "mrs-debugger",
 			"request": "launch",
 			"name": "Networking",
-			"cwd": "e:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking",
+			"cwd": "c:\\Users\\ton\\Desktop\\CH32\\EVT\\EVT\\EXAM\\CAN\\Networking",
 			"openOCDCfg": {
 				"useLocalOpenOCD": true,
-				"executable": "e:/ch32_ide/MounRiver_Studio2/resources/app/resources/win32/components/WCH/OpenOCD/OpenOCD/bin/openocd.exe",
+				"executable": "d:/gerenkesan/MounRiver/MounRiver_Studio2/resources/app/resources/win32/components/WCH/OpenOCD/OpenOCD/bin/openocd.exe",
 				"configOptions": [
-					"-f \"e:/ch32_ide/MounRiver_Studio2/resources/app/resources/win32/components/WCH/OpenOCD/OpenOCD/bin/wch-riscv.cfg\" -c \"chip_id CH32V30x\""
+					"-f \"d:/gerenkesan/MounRiver/MounRiver_Studio2/resources/app/resources/win32/components/WCH/OpenOCD/OpenOCD/bin/wch-riscv.cfg\" -c \"chip_id CH32V30x\""
 				],
 				"gdbport": 3333,
 				"telnetport": 4444,
@@ -22,7 +22,7 @@
 				"enableNoZeroWaitingAreaFlash": false
 			},
 			"gdbCfg": {
-				"executable": "e:/ch32_ide/MounRiver_Studio2/resources/app/resources/win32/components/WCH/Toolchain/RISC-V Embedded GCC/bin/riscv-none-embed-gdb.exe",
+				"executable": "d:/gerenkesan/MounRiver/MounRiver_Studio2/resources/app/resources/win32/components/WCH/Toolchain/RISC-V Embedded GCC/bin/riscv-none-embed-gdb.exe",
 				"commands": [
 					"set mem inaccessible-by-default off",
 					"set architecture riscv:rv32",
@@ -39,8 +39,8 @@
 					"additionalCommands": []
 				},
 				"loadedFiles": {
-					"executableFile": "e:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\obj\\Networking.elf",
-					"symbolFile": "e:\\上海理疗机械臂金主\\CH32V307EVT (1)\\EVT\\EXAM\\CAN\\Networking\\obj\\Networking.elf",
+					"executableFile": "c:\\Users\\ton\\Desktop\\CH32\\EVT\\EVT\\EXAM\\CAN\\Networking\\obj\\Networking.elf",
+					"symbolFile": "c:\\Users\\ton\\Desktop\\CH32\\EVT\\EVT\\EXAM\\CAN\\Networking\\obj\\Networking.elf",
 					"executableFileOffset": 0,
 					"symbolFileOffset": 0
 				},
@@ -54,7 +54,7 @@
 				},
 				"debugInRAM": false
 			},
-			"svdpath": "e:\\ch32_ide\\MounRiver_Studio2\\resources\\app\\resources\\win32\\components\\WCH\\SDK\\default/RISC-V/CH32V307/NoneOS/CH32V307xx.svd",
+			"svdpath": "d:\\gerenkesan\\MounRiver\\MounRiver_Studio2\\resources\\app\\resources\\win32\\components\\WCH\\SDK\\default/RISC-V/CH32V307/NoneOS/CH32V307xx.svd",
 			"output": {
 				"showDebugGDBTrace": true,
 				"saveDebugOutputToFile": false,

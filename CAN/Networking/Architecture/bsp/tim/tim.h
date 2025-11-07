@@ -6,6 +6,7 @@
 
 extern volatile u32 time_125us;
 void TIM1_INT_Init( u16 arr, u16 psc);
+void TIM3_Init(void);
 #endif
 
 

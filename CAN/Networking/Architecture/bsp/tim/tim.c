@@ -38,3 +38,36 @@ void TIM1_INT_Init( u16 arr, u16 psc)
 
     TIM_ITConfig(TIM1, TIM_IT_Update, ENABLE);
 }
+
+
+
+// 定时器2初始化函数，用于1ms定时中断
+
+void TIM3_Init(void)
+{
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure={0};
+    NVIC_InitTypeDef NVIC_InitStructure={0};
+
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
+    TIM_InternalClockConfig(TIM3);
+    // 定时器2配置：72MHz时钟，分频后1MHz，计数到1000为1ms
+    TIM_TimeBaseStructure.TIM_Period = 10000 - 1; // 1ms中断一次
+    TIM_TimeBaseStructure.TIM_Prescaler = 720 - 1; // 分频36，得到1MHz计数频率
+    TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+    TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+    TIM_ClearITPendingBit( TIM3, TIM_IT_Update );
+    // 开启定时器更新中断
+    TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
+
+    // 配置中断优先级
+    NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+    // 启动定时器
+    //TIM_Cmd(TIM3, ENABLE);
+}
+

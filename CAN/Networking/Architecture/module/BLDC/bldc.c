@@ -1,5 +1,6 @@
 #include "bldc.h"
 #include "can.h"
+#include "sw.h"
 /*
 这里是BLDC8108-48电机的module文件，以下为示例
     CAN_MOTOR_MODE_SET();
@@ -44,13 +45,15 @@ void CAN_MOTOR_MODE_SET(void)
     tx_buffer[5] = 0x00;
     tx_buffer[6] = 0x00;
     tx_buffer[7] = 0x00;
-    CAN_Send_Msg(tx_buffer,8,1,(u32)0x02<<5 | 0x07);
     CAN_Send_Msg(tx_buffer,8,1,(u32)0x03<<5 | 0x07);
+    delay_us(10000);
+    CAN_Send_Msg(tx_buffer,8,1,(u32)0x02<<5 | 0x07);
+    delay_us(10000);
 }
 
 // 在文件头部添加偏置开关宏定义
 //#define ENABLE_MOTOR_OFFSET  // 注释掉这行就禁用偏置
-void CAN_BLDC_POS_CONTROL(float angle,u8 motor_id)//angle是角度，id是1~5,这里有单圈绝对值
+void  CAN_BLDC_POS_CONTROL(float angle,u8 motor_id)//angle是角度，id是1~5,这里有单圈绝对值
 {
     u8 tx_buffer[8];
     u8 ieee_tx[4];
