@@ -1351,7 +1351,7 @@ void rb_test08(void)
                     timer_running_ud = 0;
                     printf("========== 所有标记点运行完成！==========\r\n");
                     YUYIN_FLAG=8;
-                    start_return_delay(2, point_count - 1);  // 类型2：循环结束
+                    RUN_START();  // 类型2：循环结束
                 }
                 else
                 {
