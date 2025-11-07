@@ -46,7 +46,6 @@ void CAN_MOTOR_MODE_SET(void)
     tx_buffer[6] = 0x00;
     tx_buffer[7] = 0x00;
     CAN_Send_Msg(tx_buffer,8,1,(u32)0x03<<5 | 0x07);
-    delay_us(10000);
     CAN_Send_Msg(tx_buffer,8,1,(u32)0x02<<5 | 0x07);
     delay_us(10000);
 }

@@ -400,32 +400,62 @@ void TIM3_IRQHandler(void)
 }
 
 /****************基础动作函数*******************************************/
+//原版回零
+// void RUN_ZERO()//回零
+// {
+//     CAN_MOTOR_MODE_SET();
+//     CAN_BLDC_POS_CONTROL(0, 2);
+//     CAN_BLDC_POS_CONTROL(0, 3);
+//     Control_Motor(0, 4);
+//     Control_Motor(0, 5);
+//     Control_Motor(0, 6);
+//     Control_Motor(0, 1);
+//     printf("电机归位\r\n");
+//     // 打印归位后的角度
+//     J1_global = 0; J2_global = 0; J3_global = 0; J4_global = 0; J5_global = 0;
+//     print_joint_angles();
+// }
+
+
+
+// void RUN_START()//回初始位置
+// {
+//     CAN_BLDC_POS_CONTROL(-98, 2);
+//     CAN_BLDC_POS_CONTROL(170, 3);
+//     Control_Motor(0, 4);
+//     Control_Motor(0, 5);
+//     Control_Motor(90, 6);
+//     Control_Motor(0, 1);
+//     printf("电机起始状态\r\n");
+//     // 设置初始角度并打印
+//     J1_global = 0; J2_global = -98; J3_global = 170; J4_global = 0; J5_global = 0;
+//     print_joint_angles();
+// }
+void RUN_START()//回初始位置
+{
+    CAN_BLDC_POS_CONTROL(-10, 2);
+    CAN_BLDC_POS_CONTROL(95, 3);
+    Control_Motor(0, 4);
+    Control_Motor(45, 5);
+    Control_Motor(60, 6);
+    Control_Motor(0, 1);
+    printf("电机起始状态\r\n");
+    // 设置初始角度并打印
+    J1_global = 0; J2_global = -10; J3_global = 95; J4_global = 45; J5_global = 60;
+    print_joint_angles();
+}
 void RUN_ZERO()//回零
 {
     CAN_MOTOR_MODE_SET();
-    CAN_BLDC_POS_CONTROL(-30, 2);
-    CAN_BLDC_POS_CONTROL(70, 3);
-    Control_Motor(0, 4);
-    Control_Motor(60, 5);
-    Control_Motor(0, 6);
-    Control_Motor(0, 1);
-    printf("电机归位\r\n");
-    // 打印归位后的角度
-    J1_global = 0; J2_global = 0; J3_global = 0; J4_global = 0; J5_global = 0;
-    print_joint_angles();
-}
-
-void RUN_START()//回初始位置
-{
     CAN_BLDC_POS_CONTROL(-98, 2);
     CAN_BLDC_POS_CONTROL(170, 3);
     Control_Motor(0, 4);
     Control_Motor(0, 5);
-    Control_Motor(0, 6);
+    Control_Motor(90, 6);
     Control_Motor(0, 1);
-    printf("电机起始状态\r\n");
-    // 设置初始角度并打印
-    J1_global = 0; J2_global = -98; J3_global = 170; J4_global = 0; J5_global = 0;
+    printf("电机归位\r\n");
+    // 打印归位后的角度
+    J1_global = 0; J2_global = -98; J3_global = 170; J4_global = 0; J5_global = 90;
     print_joint_angles();
 }
 
@@ -698,7 +728,7 @@ float PID_five_motor(float angle)
 /****************主控制函数*******************************************/
 void rb_test08(void)
 {
-    float X = 0, Y = 40, Z = 49;
+    float X = 0, Y = 30, Z = 25;
     float prev_X = X, prev_Y = Y, prev_Z = Z;
     float add = 0.0f;
     unsigned char pitch_on_flag=1;

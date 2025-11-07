@@ -48,13 +48,9 @@
   CAN_Mode_Init(CAN_SJW_1tq, CAN_BS2_5tq, CAN_BS1_6tq, 16, CAN_Mode_Normal);/* Bps = 250Kbps */
   delay_us(100000);
   CAN_MOTOR_MODE_SET();
-  //USART_SendData(USART2,'1');
-  
   delay_us(500000);
   CAN_MOTOR_MODE_SET();
-  Delay_Ms(500);
-    Delay_Ms(1000);
-      Delay_Ms(500);
+  Delay_Ms(2000);
 
 
   rb_test08();

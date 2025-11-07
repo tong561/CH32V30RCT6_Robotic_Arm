@@ -227,6 +227,8 @@ void Control_Motor(float angle, u8 id)
             acceleration = acceleration_4;
             break;
         case 5:
+            if (angle>120)angle=120;
+            if(angle<-100)angle=-100;
             pulse_count = (u32)(angle * angle_to_pulse_5 / 90.0);
             direction = direction_5;
             address = 0x500;
@@ -234,11 +236,11 @@ void Control_Motor(float angle, u8 id)
             acceleration = acceleration_5;
             break;
         case 6:
-            if (angle>150)angle=150;
+            if (angle>120)angle=120;
             if(angle<-100)angle=-100;
             pulse_count = (u32)(angle * angle_to_pulse_6 / 90.0);
             direction = direction_6;
-            address = 0x600;
+            address = 0x600;    
             speed = speed_6;
             acceleration = acceleration_6;
             break;
