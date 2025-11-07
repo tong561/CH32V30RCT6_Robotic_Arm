@@ -900,41 +900,87 @@ void rb_test08(void)
                 }
                 break;
 
-            case 0xfc:  // 启动（去掉暂停功能）
-                if (point_count > 0 && !start_flag)
+            case 0xfc:  // 启动/暂停按键
+                if (point_count > 0)
                 {
-                    biji_flag=0;//停止标记
-                    flame_on;//开启点火
-                    flame_flag=1;
-                    YUYIN_FLAG=1;
-                    RGB_LED_MODE=3;
-                    RGB_LED_MODE_BACKUP=3;  // 同步备份
-                    if (cycle_complete&&first_imu_flag2)
+                    if (start_flag)  // 当前正在运行 → 执行暂停
                     {
-                        // 循环结束后重新开始
-                        printf("重新开始运行，准备回到第一个标记点...\r\n");
-                        current_point = 0;
-                        cycle_complete = 0;
-                        for (int i = 0; i < point_count; i++) {
-                            points[i].point_timer = 0;
-                            points[i].position = 0;
-                        }
-                        // 重置上下模式状态
-                        ud_traj_step = 0;
-                        ud_interp_count = 0;
-                        ud_current_t = 0.0f;
+                        start_flag = 0;
+                        timer_running_circle = 0;
+                        timer_running_lr = 0;
+                        timer_running_ud = 0;
+                        circle_move_flag = 0;
+                        lr_move_flag = 0;
+                        ud_move_flag = 0;
                         
-                        start_return_delay(3, 0);  // 类型3：重新开始
+                        RGB_LED_MODE = 1;  // 绿色闪烁表示暂停
+                        RGB_LED_MODE_BACKUP = 1;
+                        
+                        printf("========== 运行已暂停 ==========\r\n");
+                        printf("当前停留在标记点%d，已运行%.1f秒\r\n", 
+                            current_point + 1, 
+                            points[current_point].point_timer / 1000.0f);
+                        YUYIN_FLAG = 8;  // 播放暂停提示音
                     }
-                    else if (current_point == 0 && points[0].point_timer == 0)
+                    else  // 当前未运行 → 执行启动或恢复
                     {
-                        
-                        // 首次启动
-                        printf("首次启动运行，准备回到第一个标记点...\r\n");
-                        start_return_delay(4, 0);  // 类型4：首次启动
+                        if (cycle_complete && first_imu_flag2)
+                        {
+                            // 情况1：循环结束后重新开始
+                            biji_flag = 0;
+                            flame_on;
+                            flame_flag = 1;
+                            YUYIN_FLAG = 1;
+                            RGB_LED_MODE = 3;
+                            RGB_LED_MODE_BACKUP = 3;
+                            
+                            printf("重新开始运行，准备回到第一个标记点...\r\n");
+                            current_point = 0;
+                            cycle_complete = 0;
+                            for (int i = 0; i < point_count; i++) {
+                                points[i].point_timer = 0;
+                                points[i].position = 0;
+                            }
+                            ud_traj_step = 0;
+                            ud_interp_count = 0;
+                            ud_current_t = 0.0f;
+                            
+                            start_return_delay(3, 0);  // 类型3：重新开始
+                        }
+                        else if (current_point == 0 && points[0].point_timer == 0)
+                        {
+                            // 情况2：首次启动
+                            biji_flag = 0;
+                            flame_on;
+                            flame_flag = 1;
+                            YUYIN_FLAG = 1;
+                            RGB_LED_MODE = 3;
+                            RGB_LED_MODE_BACKUP = 3;
+                            
+                            printf("首次启动运行，准备回到第一个标记点...\r\n");
+                            start_return_delay(4, 0);  // 类型4：首次启动
+                        }
+                        else
+                        {
+                            // 情况3：从暂停恢复运行（新增）
+                            RGB_LED_MODE = 3;
+                            RGB_LED_MODE_BACKUP = 3;
+                            
+                            printf("========== 从暂停恢复运行 ==========\r\n");
+                            printf("继续标记点%d，剩余时间%.1f秒\r\n", 
+                                current_point + 1,
+                                (points[current_point].point_duration - points[current_point].point_timer) / 1000.0f);
+                            
+                            start_flag = 1;
+                            timer_running_circle = mode_circle;
+                            timer_running_lr = mode_lr;
+                            timer_running_ud = mode_ud;
+                            YUYIN_FLAG = 1;  // 播放启动提示音
+                        }
                     }
                 }
                 break;
+
             case 0xFD: RUN_TIME_ADD(); break;//时间加
             case 0xFE: RUN_TIME_MINUS(); break;
             case 0xE1: 
@@ -1135,41 +1181,85 @@ void rb_test08(void)
                 }
                 break;
 
-            case 0x45:  // 启动（去掉暂停功能）
-                if (point_count > 0 && !start_flag)
+            case 0x45:  // 启动/暂停按键
+                if (point_count > 0)
                 {
-                    biji_flag=0;//停止标记
-                    flame_on;//开启点火
-                    flame_flag=1;
-                    YUYIN_FLAG=1;
-                    RGB_LED_MODE=3;
-                    RGB_LED_MODE_BACKUP=3;  // 同步备份
-                    if (cycle_complete&&first_imu_flag2)
+                    if (start_flag)  // 当前正在运行 → 执行暂停
                     {
-                        // 循环结束后重新开始
-                        printf("重新开始运行，准备回到第一个标记点...\r\n");
-                        current_point = 0;
-                        cycle_complete = 0;
-                        for (int i = 0; i < point_count; i++) {
-                            points[i].point_timer = 0;
-                            points[i].position = 0;
-                        }
-                        // 重置上下模式状态
-                        ud_traj_step = 0;
-                        ud_interp_count = 0;
-                        ud_current_t = 0.0f;
+                        start_flag = 0;
+                        timer_running_circle = 0;
+                        timer_running_lr = 0;
+                        timer_running_ud = 0;
+                        circle_move_flag = 0;
+                        lr_move_flag = 0;
+                        ud_move_flag = 0;
                         
-                        start_return_delay(3, 0);  // 类型3：重新开始
+                        RGB_LED_MODE = 1;
+                        RGB_LED_MODE_BACKUP = 1;
+                        
+                        printf("========== 运行已暂停 ==========\r\n");
+                        printf("当前停留在标记点%d，已运行%.1f秒\r\n", 
+                            current_point + 1, 
+                            points[current_point].point_timer / 1000.0f);
+                        YUYIN_FLAG = 8;
                     }
-                    else if (current_point == 0 && points[0].point_timer == 0)
+                    else  // 当前未运行 → 执行启动或恢复
                     {
-                        
-                        // 首次启动
-                        printf("首次启动运行，准备回到第一个标记点...\r\n");
-                        start_return_delay(4, 0);  // 类型4：首次启动
+                        if (cycle_complete && first_imu_flag2)
+                        {
+                            biji_flag = 0;
+                            flame_on;
+                            flame_flag = 1;
+                            YUYIN_FLAG = 1;
+                            RGB_LED_MODE = 3;
+                            RGB_LED_MODE_BACKUP = 3;
+                            
+                            printf("重新开始运行，准备回到第一个标记点...\r\n");
+                            current_point = 0;
+                            cycle_complete = 0;
+                            for (int i = 0; i < point_count; i++) {
+                                points[i].point_timer = 0;
+                                points[i].position = 0;
+                            }
+                            ud_traj_step = 0;
+                            ud_interp_count = 0;
+                            ud_current_t = 0.0f;
+                            
+                            start_return_delay(3, 0);
+                        }
+                        else if (current_point == 0 && points[0].point_timer == 0)
+                        {
+                            biji_flag = 0;
+                            flame_on;
+                            flame_flag = 1;
+                            YUYIN_FLAG = 1;
+                            RGB_LED_MODE = 3;
+                            RGB_LED_MODE_BACKUP = 3;
+                            
+                            printf("首次启动运行，准备回到第一个标记点...\r\n");
+                            start_return_delay(4, 0);
+                        }
+                        else
+                        {
+                            // 从暂停恢复运行
+                            RGB_LED_MODE = 3;
+                            RGB_LED_MODE_BACKUP = 3;
+                            
+                            printf("========== 从暂停恢复运行 ==========\r\n");
+                            printf("继续标记点%d，剩余时间%.1f秒\r\n", 
+                                current_point + 1,
+                                (points[current_point].point_duration - points[current_point].point_timer) / 1000.0f);
+                            
+                            start_flag = 1;
+                            timer_running_circle = mode_circle;
+                            timer_running_lr = mode_lr;
+                            timer_running_ud = mode_ud;
+                            YUYIN_FLAG = 1;
+                        }
                     }
                 }
                 break;
+
 
             default: break;
         }
