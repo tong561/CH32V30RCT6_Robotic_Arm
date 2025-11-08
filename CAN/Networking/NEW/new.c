@@ -431,7 +431,35 @@ void TIM3_IRQHandler(void)
 //     J1_global = 0; J2_global = -98; J3_global = 170; J4_global = 0; J5_global = 0;
 //     print_joint_angles();
 // }
-void RUN_START()//回初始位置
+// void RUN_START()//回初始位置
+// {
+//     CAN_BLDC_POS_CONTROL(-10, 2);
+//     CAN_BLDC_POS_CONTROL(95, 3);
+//     Control_Motor(0, 4);
+//     Control_Motor(45, 5);
+//     Control_Motor(60, 6);
+//     Control_Motor(0, 1);
+//     printf("电机起始状态\r\n");
+//     // 设置初始角度并打印
+//     J1_global = 0; J2_global = -10; J3_global = 95; J4_global = 45; J5_global = 60;
+//     print_joint_angles();
+// }
+// void RUN_ZERO()//回零
+// {
+//     CAN_MOTOR_MODE_SET();
+//     CAN_BLDC_POS_CONTROL(-98, 2);
+//     CAN_BLDC_POS_CONTROL(170, 3);
+//     Control_Motor(0, 4);
+//     Control_Motor(0, 5);
+//     Control_Motor(90, 6);
+//     Control_Motor(0, 1);
+//     printf("电机归位\r\n");
+//     // 打印归位后的角度
+//     J1_global = 0; J2_global = -98; J3_global = 170; J4_global = 0; J5_global = 90;
+//     print_joint_angles();
+// }
+
+void RUN_ZERO()//回零
 {
     CAN_BLDC_POS_CONTROL(-10, 2);
     CAN_BLDC_POS_CONTROL(95, 3);
@@ -444,21 +472,22 @@ void RUN_START()//回初始位置
     J1_global = 0; J2_global = -10; J3_global = 95; J4_global = 45; J5_global = 60;
     print_joint_angles();
 }
-void RUN_ZERO()//回零
+
+
+
+void RUN_START()//回初始位置
 {
-    CAN_MOTOR_MODE_SET();
     CAN_BLDC_POS_CONTROL(-98, 2);
     CAN_BLDC_POS_CONTROL(170, 3);
     Control_Motor(0, 4);
     Control_Motor(0, 5);
     Control_Motor(90, 6);
     Control_Motor(0, 1);
-    printf("电机归位\r\n");
-    // 打印归位后的角度
-    J1_global = 0; J2_global = -98; J3_global = 170; J4_global = 0; J5_global = 90;
+    printf("电机起始状态\r\n");
+    // 设置初始角度并打印
+    J1_global = 0; J2_global = -98; J3_global = 170; J4_global = 0; J5_global = 0;
     print_joint_angles();
 }
-
 void RUN_TIME_ADD()//增加单点运行时间
 {
     if (point_duration < POINT_DURATION_MAX * 60000) 
